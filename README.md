@@ -1,12 +1,12 @@
 # GuruChandali-BookTemplates-Latex
 
 ## Intro
-    All basic book templates used in creating books published from Guruchandali.
-    All are LaTex files. Compiler needs to be XeTex (declared in the first line of the main Tex file; is enough for frontends like TexStudio, check for the required hack in other setups like Overleaf). Main tex files have names like "Template XXXX.tex".
-    The main class used is 'Memoir'. Default Bengali font-class is Bengali Ananta. If you switch, remember to switch all necessary fonts for Bold and Italic, and change the corresponding entries in the main File.
+ All basic book templates used in creating books published from Guruchandali.
+ All are LaTex files. Compiler needs to be XeTex (declared in the first line of the main Tex file; is enough for frontends like TexStudio, check for the required hack in other setups like Overleaf). Main tex files have names like "Template XXXX.tex".
+ The main class used is 'Memoir'. Default Bengali font-class is Bengali Ananta. If you switch, remember to switch all necessary fonts for Bold and Italic, and change the corresponding entries in the main File.
 
 ## Details
-For now, only two templates are there: 
+ For now, only two templates are there: 
  8.5 X 5.5 (US stock Statement Paper Size)
  7.25 X 4.75 (Custom size used in India)
  
