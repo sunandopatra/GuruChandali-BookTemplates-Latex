@@ -1,6 +1,6 @@
 # GuruChandali-BookTemplates-Latex
  All basic book templates used in creating books published from Guruchandali.
- All are \Tex files. Compiler used is XeTex (denoted in the first line of the main \Tex file).
+ All are $\Tex$ files. Compiler used is XeTex (denoted in the first line of the main $\Tex$ file).
 
  For now, only two templates are there: 
  8.5 X 5.5 (US stock Statement Paper Size)
