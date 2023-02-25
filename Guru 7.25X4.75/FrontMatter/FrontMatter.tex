@@ -1,0 +1,48 @@
+\title{\Huge\textbf{\guruMainTitle}\\
+	\huge \guruSubTitle}
+\author{\LARGE \guruAuthor}
+\date{\centering
+	\vskip4.5\baselineskip
+	\includegraphics[scale=0.12]{Images/pyacha gray.jpg}\\
+	\vskip\baselineskip
+	\small
+	একটি গুরুচণ্ডা৯ প্রকাশনা \\
+	\vskip0.5\baselineskip 
+	\guruPrice টাকা (ভারত)
+}
+
+	\begin{titlingpage}
+		\pagenumbering{gobble}
+		\maketitle
+		\input{FrontMatter/PrintersPage.tex}
+	\end{titlingpage}
+
+\title{\LARGE \guruMainTitle \\ \guruSubTitle}
+\author{}
+\date{}
+	\begin{titlingpage}
+		\pagenumbering{gobble}
+		\maketitle
+	\end{titlingpage}
+
+\title{}
+\author{\large \textbf{\guruDedicationTitle}}
+\date{\textit{\guruDedicationBody}}
+	\begin{titlingpage}
+		\pagenumbering{gobble}
+		\maketitle
+		\input{FrontMatter/BookList.tex}
+	\end{titlingpage}
+
+	\begin{titlingpage}
+		\begin{KeepFromToc}
+			\tableofcontents*
+		\end{KeepFromToc}
+	\end{titlingpage}
+
+\pagenumbering{roman}
+\chapter*{\hfill\large \guruForeWordName}
+\addcontentsline{toc}{chapter}{\guruForeWordName}
+\markboth{\guruMainTitle}{\guruForeWordName}
+
+\input{FrontMatter/ForeWord.tex}

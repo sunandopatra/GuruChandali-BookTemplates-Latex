@@ -1,0 +1,8 @@
+\selectlanguage *[numerals=Bengali, changecounternumbering=true]{bengali}
+\contentsline {chapter}{ভূমিকা}{i}{}%
+\contentsline {chapter}{প্রথম অধ্যায় (সূচীপত্রে)}{১}{}%
+\contentsline {section}{(১) (সূচীপত্রে)}{১}{}%
+\contentsline {section}{(২) (সূচীপত্রে)}{২}{}%
+\contentsline {chapter}{\chapternumberline {১}দ্বিতীয় অধ্যায়ের নাম}{৫}{}%
+\contentsline {section}{\numberline {১.১}প্রথম পরিচ্ছেদ}{৫}{}%
+\contentsline {section}{\numberline {১.২}দ্বিতীয় পরিচ্ছেদ}{৬}{}%
