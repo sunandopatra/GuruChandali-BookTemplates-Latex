@@ -1,0 +1,179 @@
+% !TeX program = xelatex
+\documentclass[statementpaper,12pt,extrafontsizes%,openright,openleft
+,openany%,draft,showtrims,twoside
+]{memoir}
+\setstocksize{7.5in}{5.5in}
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\setsecnumdepth{subsubsection}
+\setcounter{tocdepth}{3}
+
+
+%\setpagebl{16cm}{12cm}{*}
+\settypeblocksize{28\baselineskip}{3.7in}{*}
+%\setulmargins{50pt}{*}{*}
+%\semiisopage[10]
+%\setbinding{0.3in}
+\setlrmargins{*}{*}{*}
+%\setlrmarginsandblock{0.75in}{0.15in}{*}
+\setulmargins{1in}{*}{*}
+%\setmarginnotes{0pt}{0pt}{*}
+%\setlength\marginparwidth {0pt}
+%\setlength\marginparsep {0pt}
+%\settrims{0pt}{0pt}
+\setheaderspaces{*}{12pt}{*}
+\setheadfoot{\onelineskip}{1.5\onelineskip}
+
+%% set up the recto page layout
+\checkandfixthelayout[lines]
+\setlength{\evensidemargin}{\oddsidemargin}% after \checkandfix
+
+%%%%%%%%%%%%        Define The Custom Chapter Style %%%%%%%%%%%%
+%% gurusimple1 chapter style
+\makechapterstyle{gurusimple1}{%
+	\setlength{\beforechapskip}{3\onelineskip}%
+	\renewcommand{\printchaptertitle}[1]{\centering\Large\bfseries{##1}}
+	\renewcommand{\afterchaptertitle}{\vskip\onelineskip
+		\hrule\vskip\onelineskip}
+%	\renewcommand*{\chapterheadstart}{\vspace{5\beforechapskip}}%
+%	\setlength{\afterchapskip}{2\onelineskip \@plus .2\onelineskip \@minus 0.2\onelineskip}%
+%	\renewcommand*{\printchaptername}{}%
+%	\renewcommand*{\chapternamenum}{}%
+	\renewcommand*{\chapnumfont}{\normalfont\Large\bfseries}%
+	\renewcommand*{\chaptitlefont}{\chapnumfont}%
+	\renewcommand*{\chapnamefont}{\chapnumfont}%
+%	\renewcommand*{\printchapternum}{%
+%		\centering\chapnumfont \chapternamenum\thechapter\quad}%
+%	\renewcommand{\afterchapternum}{}%
+%	\renewcommand*{\printchapternonum}{\centering}
+}
+
+\makeheadstyles{gurusimple1}{%
+	\chapterstyle{gurusimple1}
+	\setsecheadstyle{\large\bfseries\centering}%
+	\setsubsecheadstyle{\normalsize\bfseries\centering}%
+	\setsubsubsecheadstyle{\normalsize\itshape\centering}%
+%	\setparaheadstyle{\normalfont\normalsize\centering\itshape}%
+%	\setsubparaindent{\parindent}%
+%	\setsubparaheadstyle{\normalfont\normalsize\scshape\MakeTextLowercase}
+}
+
+%\chapterstyle{gurusimple1}
+%\chapterstyle{crosshead}
+\headstyles{gurusimple1}
+
+%%%%%%%%%%%%     End of Custom Chapter Style %%%%%%%%%%%%
+
+%\setafterSskip{\onelineskip}
+
+\makepagestyle{mystyle}
+%\setlength{\headwidth}{\dimexpr\textwidth+\marginparsep+\marginparwidth\relax}
+%\makerunningwidth{mystyle}{\headwidth}
+\makeevenhead{mystyle}{\itshape\thepage}{}{\itshape\rightmark}
+\makeoddhead{mystyle}{\itshape\leftmark}{}{\itshape\thepage}
+\makeevenfoot{mystyle}{}{}{}
+\makeoddfoot{mystyle}{}{}{}
+\makepsmarks{mystyle}{%
+	\createmark{chapter}{left}{nonumber}{}{}}
+
+%\makeatletter
+%\makepsmarks{mystyle}{%
+%	\createmark{chapter}{left}{shownumber}{\@chapapp\ }{.\ }}
+%\makeatother
+
+\pagestyle{mystyle}
+
+%\renewcommand*{\contentsname}{সূচিপত্র}
+\renewcommand{\printtoctitle}[1]{\hfill\large\itshape \contentsname}
+%\renewcommand{\listfigurename}{LIST OF FIGURES}
+%\renewcommand{\listtablename}{LIST OF TABLES}
+%\renewcommand*{\aftertoctitle}{\thispagestyle{plain} \par\nobreak \mbox{}\hfill{\normalfont Page}\par\nobreak}
+%\renewcommand*{\cftchapterfont}{\normalfont}
+\renewcommand*{\cftchapterpagefont}{\normalfont}
+%\renewcommand*{\cftchapterleader}{\cftchapterfont\cftdotfill{\cftchapterdotsep}}
+%\renewcommand*{\cftchapterdotsep}{\cftdotsep}
+%\renewcommand*{\cftchaptername}{CHAPTER~}
+%\setlength{\cftbeforechapterskip}{4pt}
+%\renewcommand*{\insertchapterspace}{}
+
+%\pagestyle{headings}
+
+
+\usepackage{amsmath,amssymb,physics,
+	dsfont,setspace,tipa,relsize,graphicx,
+	textcomp,mathrsfs,calligra,wasysym,
+	ragged2e,xcolor,textcomp,microtype}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\setlist{noitemsep}
+\usepackage[labelformat=empty]{caption}
+\usepackage{titlesec}  %needs recent version of »titlesec«
+\usepackage{polyglossia}
+\usepackage{fontspec}
+%\setmainfont[]{kalpurush.ttf} % u can use only one font 
+\setmainfont[
+BoldFont=4C-Beng-Ananta_Bold.ttf,
+ItalicFont=4C-Beng-Ananta_Italic.ttf,
+BoldItalicFont=4C-Beng-Ananta.ttf
+]{4C-Beng-Ananta.ttf}
+%\newfontfamily\ben{4C-Beng-Ananta.ttf}
+
+% This will make dates, sections, subsections and so on to Bengali numbers. If you don't want to convert it to Bengali then comment it out.
+\setdefaultlanguage[numerals=Bengali,
+changecounternumbering=true]{bengali}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%        Variables for the FrontMatter 	%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\guruMainTitle}{বইয়ের নাম Title}
+\newcommand{\guruSubTitle}{সাবটাইটল Subtitle}
+\newcommand{\guruFullTitle}{\guruMainTitle —\guruSubTitle}
+\newcommand{\guruAuthor}{লেখক Author}
+
+\newcommand{\guruPrice}{XXX}
+\newcommand{\guruPublicationDetails}{প্রথম প্রকাশ: ???, ২০২X (XXX কপি)}
+\newcommand{\guruPublisher}{?প্রকাশক?}
+\newcommand{\guruPress}{এস পি কমিউনিকেশনস, ৩১বি, রাজা দীনেন্দ্র স্ট্রিট, কলকাতা ৭০০ ০০৯}
+\newcommand{\guruRobots}{প্রচ্ছদ: ??? \\
+	নামাঙ্কণ: ??? \\
+	প্রচ্ছদ সহায়তা: ??? \\
+	মুদ্রণ সহযোগিতা ও অক্ষর বিন্যাস:  সুনন্দ, ???}
+\newcommand{\guruISBN}{????}
+
+\newcommand{\guruDedicationTitle}{উৎসর্গ}
+\newcommand{\guruDedicationBody}{????? }
+
+\newcommand{\guruAdoptionList}{????}
+
+\newcommand{\guruBookList}{BookList/Science.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%        Variables for the Text 	%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\guruForeWordName}{ভূমিকা}
+\input{DemoText.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+
+
+\begin{document}
+
+\frontmatter
+	\input{FrontMatter/FrontMatter.tex}
+
+\mainmatter
+	\pagenumbering{arabic}
+	\input{Chapters/Chapter1.tex}
+	\input{Chapters/Chapter2.tex}
+
+\backmatter
+	\input{FrontMatter/Adoption.tex}
+%	\newpage \ % Use this to add blank pages at the end of the document.
+
+\end{document}
