@@ -1,0 +1,2506 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[    118528,       2498]
+NotebookOptionsPosition[    109336,       2366]
+NotebookOutlinePosition[    109791,       2384]
+CellTagsIndexPosition[    109748,       2381]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Preamble", "Section",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.95613880755435*^9, 
+  3.95613881060198*^9}},ExpressionUUID->"270ebaa9-ca01-8749-bc5c-\
+b9098f22d531"],
+
+Cell[TextData[{
+ "Run these at the beginning of your session. \[LineSeparator]The first one \
+reduces your memory use (\[OpenCurlyQuote]",
+ StyleBox["Mathematica is a RAM-monster",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] is a myth.)\nThe second one lets you keep track of the \
+directory of your notebook and paths then can be used in reference to that."
+}], "Text",
+ CellChangeTimes->{{3.9561388291506157`*^9, 3.95613893722488*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"1e595848-388f-374d-b884-638c37fd979c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$HistoryLength", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"NotebookDirectory", "[", "]"}]}], "Input",
+ CellChangeTimes->{{3.9545508971005974`*^9, 3.9545509224200745`*^9}},
+ CellLabel->
+  "5/19/25 06:01:39 \
+In[1]:=",ExpressionUUID->"3bcbb28a-7a26-7a42-a0d4-5891a63cb0ed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Mistral OCR Functions", "Section",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.956633714493128*^9, 3.9566337158151455`*^9}, {
+  3.956635080956579*^9, 
+  3.956635083326071*^9}},ExpressionUUID->"d7297396-9ecd-9c46-b429-\
+b946319a2fb1"],
+
+Cell[TextData[{
+ "To start using Mistral, follow the instructions in the \
+\[OpenCurlyDoubleQuote]",
+ StyleBox["ReadMe.md",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\[CloseCurlyDoubleQuote] file in the GitHub Repo.\nOnce you get your own \
+API-Key, save it in your system using the following piece of code. It will be \
+saved afterwords, even if you restart the computer."
+}], "Text",
+ CellChangeTimes->{{3.956449099270912*^9, 3.956449114357769*^9}, {
+  3.956449189109068*^9, 3.9564493123036156`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"064ba226-c395-c64d-b645-96e8497c6c4d"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}], 
+   "=", "\"\<your_api_key_goes_here\>\""}], "*)"}]], "Input",
+ CellChangeTimes->{{3.956281746105362*^9, 
+  3.956281856771326*^9}},ExpressionUUID->"e2b2c325-ed8e-5a47-a55d-\
+6739c3e66650"],
+
+Cell["You need to just ask for it whenever you want it back... ", "Text",
+ CellChangeTimes->{{3.956449327483095*^9, 3.956449364112446*^9}, {
+  3.956449402147871*^9, 3.9564494022787247`*^9}, {3.956601120778736*^9, 
+  3.9566011368085747`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"28c766dc-b0eb-1c4b-8d56-3aa8500778db"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.956281746105362*^9, 3.956281856771326*^9}, 
+   3.956449372661873*^9},
+ CellLabel->
+  "5/17/25 11:51:40 \
+In[31]:=",ExpressionUUID->"e65bac0e-acfb-a048-b4bf-f108f3dc9425"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Functions (",
+ StyleBox["Run These",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ ")"
+}], "Subsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956449418131321*^9, 
+  3.9564494390724907`*^9}, {3.956536741665825*^9, 
+  3.956536745368826*^9}},ExpressionUUID->"49d05754-9357-6d41-94a7-\
+c5ea737ddd10"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "URLQ", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"URLQ", "[", "s_", "]"}], ":=", 
+  RowBox[{"!", 
+   RowBox[{"FailureQ", "[", 
+    RowBox[{
+     RowBox[{"Interpreter", "[", "\"\<URL\>\"", "]"}], "[", "s", "]"}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"source", ":", " ", "https", ":"}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"community", ".", "wolfram", ".", "com"}], "/", "groups"}], "/",
+         "-"}], "/", "m"}], "/", "t"}], "/", "902755"}]}], " ", 
+   "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.956453186042452*^9, 3.956453188651453*^9}, {
+  3.9564532449420547`*^9, 3.956453291761711*^9}},
+ CellLabel->
+  "5/19/25 06:01:42 \
+In[3]:=",ExpressionUUID->"6fa6214d-645d-e54d-8108-e837699dd718"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Python Script for Base64 conversion (",
+ StyleBox["Just for",
+  FontSlant->"Italic"],
+ StyleBox[" ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox["Local Images",
+  FontSlant->"Italic",
+  FontVariations->{"Underline"->True}],
+ ")"
+}], "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956449418131321*^9, 
+  3.9564494390724907`*^9}, {3.9564516047904243`*^9, 3.956451607273758*^9}, {
+  3.956465935062086*^9, 3.956465939269308*^9}, {3.9565366925814247`*^9, 
+  3.956536711914816*^9}, {3.95660107367107*^9, 
+  3.9566010749985065`*^9}},ExpressionUUID->"1380dd97-4e21-0c4e-b737-\
+0e6b91fbabed"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "pyImg2Base64", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pyImg2Base64", "[", "path_String", "]"}], ":=", 
+  RowBox[{"\"\<import base64\n\ndef encode_image(image_path):\n    \\\"\\\"\\\
+\"Encode the image to base64.\\\"\\\"\\\"\n    try:\n        with \
+open(image_path, \\\"rb\\\") as image_file:\n            return \
+base64.b64encode(image_file.read()).decode('utf-8')\n    except \
+FileNotFoundError:\n        print(f\\\"Error: The file {image_path} was not \
+found.\\\")\n        return None\n    except Exception as e:  # Added general \
+exception handling\n        print(f\\\"Error: {e}\\\")\n        return None\n \
+   \n# Path to your image\nimage_path = \\\"\>\"", "<>", "path", 
+   "<>", "\"\<\\\"\n\n# Getting the base64 string\nbase64_image = \
+encode_image(image_path)\n\nbase64_image\>\""}]}]}], "Input",
+ CellChangeTimes->{{3.9564646938548527`*^9, 3.9564647686619854`*^9}, 
+   3.9564648134984665`*^9, {3.9564649722641487`*^9, 3.95646499457082*^9}, {
+   3.9564651442696743`*^9, 3.956465168998211*^9}, {3.956465377219063*^9, 
+   3.956465448005497*^9}, {3.9565010000439243`*^9, 3.9565010493691063`*^9}, {
+   3.9565010855223446`*^9, 3.956501167453829*^9}, {3.956501231102669*^9, 
+   3.956501309121565*^9}, {3.9565013894491673`*^9, 3.956501401214199*^9}, {
+   3.9565014516792984`*^9, 3.956501468856159*^9}, {3.9565019011418266`*^9, 
+   3.956501902276636*^9}, {3.956503022571802*^9, 3.956503029493801*^9}},
+ CellLabel->
+  "5/19/25 06:01:42 \
+In[5]:=",ExpressionUUID->"a781eaeb-d672-0b43-9681-d91741ac4dce"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Image OCR", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956449418131321*^9, 
+  3.9564494390724907`*^9}, {3.9564516047904243`*^9, 
+  3.956451607273758*^9}},ExpressionUUID->"8b47ed8f-4ba2-d54d-9600-\
+e32864bd5845"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "callMistralOCRImage", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "callMistralOCRImage", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<outType\>\"", "->", "\"\<MarkDown\>\""}], ",", 
+     RowBox[{"\"\<OCRModel\>\"", "->", "\"\<mistral-ocr-latest\>\""}], ",", 
+     RowBox[{"\"\<MistralAPIKey\>\"", "->", 
+      RowBox[{"SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}]}], ",", 
+     RowBox[{"\"\<Export\>\"", "->", "False"}], ",", 
+     RowBox[{"\"\<outDir\>\"", "->", "Automatic"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"callMistralOCRImage", "[", 
+   RowBox[{"fileName_String", ",", 
+    RowBox[{"outFileBaseName___", ":", "Automatic"}], ",", 
+    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"endpointURL", "=", "\"\<https://api.mistral.ai/v1/ocr\>\""}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"outName", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"outFileBaseName", "===", "Automatic"}], ",", 
+         RowBox[{"FileBaseName", "[", "fileName", "]"}], ",", 
+         "outFileBaseName"}], "]"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{"outext", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"OptionValue", "[", "\"\<outType\>\"", "]"}], 
+          "===", "\"\<MarkDown\>\""}], ",", "\"\<.md\>\"", 
+         ",", "\"\<.json\>\""}], "]"}]}], ",", "\[IndentingNewLine]", "cmd", ",",
+       "bs64", ",", "imgstr", ",", "myRequest", ",", "jsonResponse", ",", 
+      "jsonBody", ",", "output", ",", "outPath"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Prepare", " ", "the", " ", "JSON", " ", "body", " ", "of", " ", "the", " ",
+       "request"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"imgstr", "=", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"URLQ", "[", "fileName", "]"}], ",", "\[IndentingNewLine]", 
+        "fileName", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"cmd", "=", 
+          RowBox[{"pyImg2Base64", "[", "fileName", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"bs64", "=", 
+          RowBox[{"ExternalEvaluate", "[", 
+           RowBox[{"\"\<Python\>\"", ",", "cmd"}], "]"}]}], 
+         RowBox[{"(*", 
+          RowBox[{"StringTrim", "@", 
+           RowBox[{"ExportString", "[", 
+            RowBox[{"img", ",", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Base64\>\"", ",", 
+               RowBox[{"FileFormat", "@", "img"}]}], "}"}]}], "]"}]}], "*)"}], 
+         RowBox[{"(*", 
+          RowBox[{"BaseEncode", "[", 
+           RowBox[{
+            RowBox[{"ExportByteArray", "[", 
+             RowBox[{"fileName", ",", 
+              RowBox[{"FileFormat", "@", "fileName"}]}], "]"}], 
+            ",", "\"\<Base64\>\""}], "]"}], "*)"}], "\[IndentingNewLine]", ";",
+          "\[IndentingNewLine]", 
+         RowBox[{"\"\<data:image/jpeg;base64,\>\"", "<>", "bs64"}]}]}], 
+       "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"jsonBody", "=", 
+      RowBox[{"ExportString", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<model\>\"", "->", 
+           RowBox[{"OptionValue", "[", "\"\<OCRModel\>\"", "]"}]}], ",", 
+          RowBox[{"\"\<document\>\"", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<type\>\"", "->", "\"\<image_url\>\""}], ",", 
+             RowBox[{"\"\<image_url\>\"", "->", "imgstr"}]}], "}"}]}]}], 
+         "}"}], ",", "\"\<JSON\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Create", " ", "the", " ", "HTTP", " ", "request"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"myRequest", "=", "\[IndentingNewLine]", 
+      RowBox[{"HTTPRequest", "[", 
+       RowBox[{"endpointURL", ",", "\[IndentingNewLine]", 
+        RowBox[{"<|", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<Method\>\"", "->", "\"\<POST\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<Headers\>\"", "->", "\[IndentingNewLine]", 
+           RowBox[{"<|", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\"\<Authorization\>\"", "->", 
+              RowBox[{"\"\<Bearer \>\"", "<>", 
+               RowBox[{"OptionValue", "[", "\"\<MistralAPIKey\>\"", "]"}]}]}],
+              ",", "\[IndentingNewLine]", 
+             
+             RowBox[{"\"\<Content-Type\>\"", 
+              "->", "\"\<application/json\>\""}]}], "\[IndentingNewLine]", 
+            "|>"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Body\>\"", "->", "jsonBody"}]}], "\[IndentingNewLine]",
+          "|>"}]}], "\[IndentingNewLine]", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Execute", " ", "the", " ", "request", " ", "and", " ", "get", " ", 
+       "the", " ", "JSON", " ", "response"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"jsonResponse", "=", 
+      RowBox[{"URLExecute", "[", "myRequest", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Convert", " ", "the", " ", "list", " ", "of", " ", "rules", " ", "to", 
+       " ", "an", " ", "association", " ", "for", " ", "easier", " ", 
+       "access", " ", "by", " ", "key"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"jsonResponse", "=", 
+      RowBox[{
+       RowBox[{"ResourceFunction", "[", "\"\<ToAssociations\>\"", "]"}], "[", 
+       "jsonResponse", "]"}]}], 
+     RowBox[{"(*", 
+      RowBox[{"Replace", "[", 
+       RowBox[{"jsonResponse", ",", 
+        RowBox[{"l_List", ":>", 
+         RowBox[{"Association", "[", "l", "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}], "*)"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Check", " ", "if", " ", "the", " ", "response", " ", "contains", " ", 
+       "the", " ", 
+       RowBox[{"expected", "'"}], 
+       RowBox[{"choices", "'"}], " ", "key"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"KeyExistsQ", "[", 
+         RowBox[{"jsonResponse", ",", "\"\<pages\>\""}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"If", " ", 
+          RowBox[{"the", "'"}], 
+          RowBox[{"pages", "'"}], " ", "key", " ", "is", " ", "missing"}], ",", 
+         RowBox[{"return", " ", "$Failed"}]}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "$Failed", "]"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"Extract", " ", "the", " ", "content"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"output", "=", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"OptionValue", "[", "\"\<outType\>\"", "]"}], 
+         "===", "\"\<JSON\>\""}], ",", "\[IndentingNewLine]", "jsonResponse", 
+        ",", "\[IndentingNewLine]", 
+        RowBox[{"StringJoin", "@@", 
+         RowBox[{"Riffle", "[", 
+          RowBox[{
+           RowBox[{"imgID2Base64", "/@", 
+            RowBox[{"jsonResponse", "[", "\"\<pages\>\"", "]"}]}], 
+           ",", "\"\<\\n\\n\>\""}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}],
+      ";", "\[IndentingNewLine]", 
+     RowBox[{"outPath", "=", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"StringQ", "[", 
+         RowBox[{"OptionValue", "[", "\"\<outDir\>\"", "]"}], "]"}], ",", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "\"\<outDir\>\"", "]"}], ",", 
+           RowBox[{"outName", "<>", "outext"}]}], "}"}], "]"}], ",", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+           RowBox[{"outName", "<>", "outext"}]}], "}"}], "]"}]}], "]"}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"OptionValue", "[", "\"\<Export\>\"", "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"OptionValue", "[", "\"\<outType\>\"", "]"}], 
+          "===", "\"\<MarkDown\>\""}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Export", "[", 
+          RowBox[{"outPath", ",", "output", ",", "\"\<Text\>\""}], "]"}], ",",
+          "\[IndentingNewLine]", 
+         RowBox[{"Export", "[", 
+          RowBox[{"outPath", ",", "output", ",", "\"\<JSON\>\""}], "]"}]}], 
+        "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", "output"}], 
+      "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9562737861711197`*^9, 3.9562737993093166`*^9}, {
+   3.956273852906893*^9, 3.956273870762081*^9}, {3.956274088806328*^9, 
+   3.956274102790985*^9}, {3.956274175654955*^9, 3.9562742795892086`*^9}, {
+   3.9562744286601486`*^9, 3.9562744381254463`*^9}, {3.956275172820759*^9, 
+   3.956275182339855*^9}, {3.956275284628004*^9, 3.956275294663275*^9}, {
+   3.9562753768174305`*^9, 3.9562754184995575`*^9}, {3.956275449708235*^9, 
+   3.95627546085948*^9}, {3.956276647251585*^9, 3.956276649346447*^9}, {
+   3.956276786358774*^9, 3.9562768260344677`*^9}, {3.956277066132412*^9, 
+   3.9562771249305344`*^9}, {3.9562817040403748`*^9, 
+   3.9562817056039295`*^9}, {3.956281941089445*^9, 3.956281953891798*^9}, {
+   3.9562819930124645`*^9, 3.9562820584255314`*^9}, {3.956282128617424*^9, 
+   3.9562821462659607`*^9}, {3.956282182981201*^9, 3.956282184365822*^9}, {
+   3.9562822640587883`*^9, 3.956282320058264*^9}, {3.9562823649469833`*^9, 
+   3.956282406309082*^9}, {3.9562825603856106`*^9, 3.956282605687849*^9}, {
+   3.956282790642082*^9, 3.9562831760098553`*^9}, {3.95628329814966*^9, 
+   3.956283337442732*^9}, {3.956283370465069*^9, 3.9562833764114456`*^9}, {
+   3.956283543526848*^9, 3.956283549988514*^9}, {3.9564494652255383`*^9, 
+   3.9564494731834183`*^9}, {3.956450693293415*^9, 3.956450696216036*^9}, {
+   3.9564512950007706`*^9, 3.956451428104849*^9}, {3.956451481278244*^9, 
+   3.9564515688682365`*^9}, {3.956451851907425*^9, 3.956451871093977*^9}, {
+   3.956451909226671*^9, 3.9564519132531796`*^9}, {3.956452298458254*^9, 
+   3.9564523263961105`*^9}, {3.9564523693794117`*^9, 
+   3.9564523780204124`*^9}, {3.956452430258644*^9, 3.956452465445511*^9}, {
+   3.9564525066613255`*^9, 3.956452593914974*^9}, {3.9564527854959164`*^9, 
+   3.9564527909793663`*^9}, {3.9564528370744667`*^9, 3.956452861328373*^9}, 
+   3.956452895676094*^9, {3.9564529306596966`*^9, 3.9564529910067825`*^9}, {
+   3.9564530989109726`*^9, 3.9564531645132885`*^9}, {3.9564533063967686`*^9, 
+   3.9564533205414925`*^9}, {3.956454152953306*^9, 3.9564542159271317`*^9}, {
+   3.956454523530979*^9, 3.956454562054287*^9}, {3.956454635988394*^9, 
+   3.9564546450797844`*^9}, {3.956454698917204*^9, 3.956454709245203*^9}, 
+   3.956454824677101*^9, {3.9564549593759766`*^9, 3.9564549687200203`*^9}, {
+   3.9564618127826843`*^9, 3.9564618170100803`*^9}, {3.956461883645567*^9, 
+   3.956461883824791*^9}, {3.9564619199260864`*^9, 3.95646194848542*^9}, {
+   3.9564619950527267`*^9, 3.956462022718651*^9}, {3.956462055989773*^9, 
+   3.956462061305008*^9}, {3.95646211448184*^9, 3.9564621338217983`*^9}, {
+   3.956462174089964*^9, 3.956462193567131*^9}, {3.9564622281408577`*^9, 
+   3.9564622316210365`*^9}, {3.9564623071660786`*^9, 3.9564624493426*^9}, {
+   3.956462491978901*^9, 3.956462500478447*^9}, {3.9564625353438034`*^9, 
+   3.956462574817934*^9}, 3.9564626212337685`*^9, {3.956462676665718*^9, 
+   3.9564626772199*^9}, {3.95646272272789*^9, 3.956462726880226*^9}, {
+   3.956463645368355*^9, 3.9564636659402847`*^9}, {3.9564639103888493`*^9, 
+   3.9564639770941143`*^9}, {3.956464500637169*^9, 3.956464515294733*^9}, {
+   3.956465456824518*^9, 3.9564654605323143`*^9}, {3.9564654906063824`*^9, 
+   3.9564655431181526`*^9}, {3.956465593694412*^9, 3.9564657304232616`*^9}, {
+   3.956465773594227*^9, 3.9564658672944927`*^9}, {3.956466188563572*^9, 
+   3.9564662546791553`*^9}, {3.9564663025064125`*^9, 
+   3.9564663873796616`*^9}, {3.956466429573801*^9, 3.956466457847687*^9}, {
+   3.9564665775473194`*^9, 3.9564665781910267`*^9}, {3.956466624178217*^9, 
+   3.956466678081171*^9}, {3.956509981651167*^9, 3.9565100079599495`*^9}, {
+   3.9565101625307617`*^9, 3.9565101683987465`*^9}, {3.9565102650256023`*^9, 
+   3.956510269144663*^9}, {3.9565114724077644`*^9, 3.9565114908842716`*^9}, {
+   3.9565116858666*^9, 3.95651168931246*^9}, {3.9566041257162075`*^9, 
+   3.956604204385193*^9}, 3.9566042369243374`*^9},
+ CellLabel->
+  "5/19/25 06:14:18 \
+In[27]:=",ExpressionUUID->"15e03a32-2bf3-e04d-93e7-b084419de859"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["PDF OCR", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956449418131321*^9, 
+  3.9564494390724907`*^9}, {3.9564516047904243`*^9, 3.956451607273758*^9}, {
+  3.956490015350771*^9, 
+  3.9564900166326103`*^9}},ExpressionUUID->"1b8895eb-70c9-7a46-ade1-\
+8140b9289d26"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "getMistralSignedURL", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"getMistralSignedURL", "[", "filePath_String", "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"fileendpt", "=", "\"\<https://api.mistral.ai/v1/files\>\""}], ",",
+       "fileData"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"FileFormat", "[", "filePath", "]"}], "=!=", "\"\<PDF\>\""}], 
+       ",", 
+       RowBox[{
+        RowBox[{"Print", "[", "\"\<The file is not a PDF.\>\"", "]"}], ";", 
+        RowBox[{"Abort", "[", "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fileData", "=", 
+      RowBox[{"Association", "@", 
+       RowBox[{"URLExecute", "[", "\[IndentingNewLine]", 
+        RowBox[{"HTTPRequest", "[", 
+         RowBox[{"fileendpt", ",", "\[IndentingNewLine]", 
+          RowBox[{"<|", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"\"\<Method\>\"", "->", "\"\<POST\>\""}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"\"\<Headers\>\"", "->", "\[IndentingNewLine]", 
+             RowBox[{"<|", "\[IndentingNewLine]", 
+              RowBox[{"\"\<Authorization\>\"", "->", 
+               RowBox[{"\"\<Bearer \>\"", "<>", 
+                RowBox[{
+                "SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}]}]}],
+               "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"\"\<Body\>\"", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"\"\<purpose\>\"", "->", "\"\<ocr\>\""}], ",", 
+               RowBox[{"\"\<file\>\"", "->", 
+                RowBox[{"File", "[", "filePath", "]"}]}]}], "}"}]}]}], 
+           "\[IndentingNewLine]", "|>"}]}], "\[IndentingNewLine]", "]"}], 
+        "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"URLExecute", "[", "\[IndentingNewLine]", 
+       RowBox[{"HTTPRequest", "[", 
+        RowBox[{
+         RowBox[{"fileendpt", "<>", "\"\</\>\"", "<>", 
+          RowBox[{"fileData", "[", "\"\<id\>\"", "]"}], 
+          "<>", "\"\</url?expiry=24\>\""}], ",", "\[IndentingNewLine]", 
+         RowBox[{"<|", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\"\<Method\>\"", "->", "\"\<GET\>\""}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"\"\<Headers\>\"", "->", "\[IndentingNewLine]", 
+            RowBox[{"<|", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"\"\<Authorization\>\"", "->", 
+               RowBox[{"\"\<Bearer \>\"", "<>", 
+                RowBox[{
+                "SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}]}]}],
+               ",", "\[IndentingNewLine]", 
+              RowBox[{"\"\<Accept\>\"", "->", "\"\<application/json\>\""}]}], 
+             "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"\"\<Body\>\"", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"\"\<purpose\>\"", "->", "\"\<ocr\>\""}], ",", 
+              RowBox[{"\"\<file\>\"", "->", 
+               RowBox[{"File", "[", "filePath", "]"}]}]}], "}"}]}]}], 
+          "\[IndentingNewLine]", "|>"}]}], "\[IndentingNewLine]", "]"}], 
+       "]"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.95650464362998*^9, 3.9565048639839993`*^9}},
+ CellLabel->
+  "5/19/25 06:01:42 \
+In[10]:=",ExpressionUUID->"31c0741b-b088-b045-bed6-7cc6d5d3ec9d"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", 
+  RowBox[{
+  "choiceMistralFile", ",", "imgID2Base64", ",", "base642Img", ",", 
+   "mistralJSON2MD", ",", "exportExtImgsMistral"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"choiceMistralFile", "[", 
+   RowBox[{"outDir_", ",", "outBaseName_", ",", "outType_", ",", 
+    RowBox[{"overWrite_", ":", "False"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"outType", "===", "\"\<JSON\>\""}], ",", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"FileExistsQ", "[", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"outDir", ",", "\"\<JSON\>\""}], "}"}], "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"FileExistsQ", "[", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"outDir", ",", "\"\<JSON\>\"", ",", 
+            RowBox[{"outBaseName", "<>", "\"\<.json\>\""}]}], "}"}], "]"}], 
+         "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"overWrite", ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"\"\<JSON\>\"", ",", "\"\<Null\>\""}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+           "Print", 
+            "[", "\"\<The 'JSON' file exists and the Option \\\"OverWrite\\\" \
+is set to be 'False'.\>\"", " ", "]"}], ";", 
+           RowBox[{"Abort", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<JSON\>\"", ",", "\"\<Null\>\""}], "}"}]}], 
+     "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"FileExistsQ", "[", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{"outDir", ",", "\"\<JSON\>\""}], "}"}], "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"FileExistsQ", "[", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"outDir", ",", "\"\<JSON\>\"", ",", 
+            RowBox[{"outBaseName", "<>", "\"\<.json\>\""}]}], "}"}], "]"}], 
+         "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"overWrite", ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"\"\<JSON\>\"", ",", "\"\<MarkDown\>\""}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"FileExistsQ", "[", 
+             RowBox[{"FileNameJoin", "[", 
+              RowBox[{"{", 
+               RowBox[{"outDir", ",", "\"\<MarkDown\>\""}], "}"}], "]"}], 
+             "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"FileExistsQ", "[", 
+                RowBox[{"FileNameJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"outDir", ",", "\"\<MarkDown\>\"", ",", 
+                   RowBox[{"outBaseName", "<>", "\"\<.md\>\""}]}], "}"}], 
+                 "]"}], "]"}], "||", 
+               RowBox[{"FileExistsQ", "[", 
+                RowBox[{"FileNameJoin", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"outDir", ",", "\"\<MarkDown\>\"", ",", 
+                   RowBox[{"outBaseName", "<>", "\"\<_md\>\""}]}], "}"}], 
+                 "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+               "Print", 
+                "[", "\"\<The 'MarkDown' file exists and the Option \
+\\\"OverWrite\\\" is set to be 'False'.\>\"", " ", "]"}], ";", 
+               RowBox[{"Abort", "[", "]"}]}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Null\>\"", ",", "\"\<MarkDown\>\""}], "}"}]}], 
+             "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Null\>\"", ",", "\"\<MarkDown\>\""}], "}"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"\"\<JSON\>\"", ",", "\"\<MarkDown\>\""}], "}"}]}], 
+       "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<JSON\>\"", ",", "\"\<MarkDown\>\""}], "}"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"imgID2Base64", "[", "entry_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "[", 
+      RowBox[{"entry", "[", "\"\<images\>\"", "]"}], "]"}], "==", "0"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"entry", "[", "\"\<markdown\>\"", "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"imgasso", "=", 
+         RowBox[{"Association", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"#", "[", "\"\<id\>\"", "]"}], "->", 
+                 RowBox[{"#", "[", "\"\<image_base64\>\"", "]"}]}], ")"}], 
+               "&"}], "/@", 
+              RowBox[{"#", "[", "\"\<images\>\"", "]"}]}], ")"}], "&"}], "@", 
+           "entry"}], "]"}]}], ",", "replst"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"replst", "=", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             
+             RowBox[{"\"\<![\>\"", "<>", "#", "<>", "\"\<](\>\"", "<>", "#", 
+              "<>", "\"\<)\>\""}], "->", 
+             RowBox[{"\"\<![\>\"", "<>", "#", "<>", "\"\<](\>\"", "<>", 
+              RowBox[{"imgasso", "[", "#", "]"}], "<>", "\"\<)\>\""}]}], 
+            ")"}], "&"}], "/@", 
+          RowBox[{"Keys", "[", "imgasso", "]"}]}], ")"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{
+         RowBox[{"entry", "[", "\"\<markdown\>\"", "]"}], ",", "replst"}], 
+        "]"}]}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"base642Img", "[", "entry_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Length", "[", 
+      RowBox[{"entry", "[", "\"\<images\>\"", "]"}], "]"}], ">", "0"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"#", "[", "\"\<id\>\"", "]"}], "->", 
+        RowBox[{"ImportString", "[", 
+         RowBox[{
+          RowBox[{"StringReplace", "[", 
+           RowBox[{
+            RowBox[{"#", "[", "\"\<image_base64\>\"", "]"}], ",", 
+            RowBox[{
+             RowBox[{"\"\<data:\>\"", "~~", 
+              RowBox[{"Shortest", "[", "__", "]"}], "~~", "\"\<base64,\>\""}],
+              "->", "\"\<\>\""}]}], "]"}], ",", "\"\<Base64\>\""}], "]"}]}], 
+       ")"}], "&"}], "/@", 
+     RowBox[{"entry", "[", "\"\<images\>\"", "]"}]}], ",", 
+    "\[IndentingNewLine]", "Nothing"}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mistralJSON2MD", "[", 
+   RowBox[{"jsonInput_", ",", 
+    RowBox[{"replaceImages_", ":", "True"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"If", "[", 
+   RowBox[{"replaceImages", ",", "\[IndentingNewLine]", 
+    RowBox[{"StringJoin", "@@", 
+     RowBox[{"Riffle", "[", 
+      RowBox[{
+       RowBox[{"imgID2Base64", "/@", 
+        RowBox[{"jsonInput", "[", "\"\<pages\>\"", "]"}]}], 
+       ",", "\"\<\\n\\n\>\""}], "]"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"StringJoin", "@@", 
+     RowBox[{"Riffle", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", "\"\<markdown\>\"", "]"}], "&"}], "/@", 
+         RowBox[{"jsonInput", "[", "\"\<pages\>\"", "]"}]}], ")"}], 
+       ",", "\"\<\\n\\n\>\""}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exportExtImgsMistral", "[", 
+   RowBox[{"jsonInput_", ",", "mdFileDir_", ",", 
+    RowBox[{"resolution_", ":", "200"}]}], "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"imglst", "=", 
+      RowBox[{"Association", "[", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"base642Img", "/@", 
+         RowBox[{"jsonInput", "[", "\"\<pages\>\"", "]"}]}], "]"}], "]"}]}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Export", "[", 
+       RowBox[{
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"mdFileDir", ",", "#"}], "}"}], "]"}], ",", 
+        RowBox[{"imglst", "[", "#", "]"}], ",", 
+        RowBox[{"ImageResolution", "->", "resolution"}]}], "]"}], "&"}], "/@", 
+     RowBox[{"Keys", "[", "imglst", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.956571913390682*^9, 3.9565719446882057`*^9}, {
+   3.956572163532812*^9, 3.9565721884268436`*^9}, {3.9565723108548737`*^9, 
+   3.956572349951908*^9}, {3.956572650783493*^9, 3.9565726825656776`*^9}, {
+   3.9565728551216183`*^9, 3.9565730636752625`*^9}, {3.9565734640954742`*^9, 
+   3.9565734935461044`*^9}, {3.956574695685419*^9, 3.9565747573032913`*^9}, {
+   3.9565747897437057`*^9, 3.9565750189577484`*^9}, {3.9565933045647926`*^9, 
+   3.9565933846751175`*^9}, {3.956593527523466*^9, 3.956593565122118*^9}, {
+   3.95659368018561*^9, 3.956593812586836*^9}, 3.9565938781405735`*^9, 
+   3.95659390939699*^9, 3.9565940217144585`*^9, {3.9565943668987255`*^9, 
+   3.956594371404356*^9}, {3.956594752976391*^9, 3.9565947589062424`*^9}, {
+   3.956596586644575*^9, 3.956596694287117*^9}, {3.956598920747406*^9, 
+   3.9565989427798195`*^9}, {3.956598978837473*^9, 3.9565990828791943`*^9}, {
+   3.9565991654430084`*^9, 3.9565991702817974`*^9}, {3.9565992362795525`*^9, 
+   3.956599493779045*^9}},
+ CellLabel->
+  "5/19/25 06:01:42 \
+In[12]:=",ExpressionUUID->"cfd67ed0-24af-6f4d-bd65-bc7affe33e15"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "callMistralOCRPDF", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "callMistralOCRPDF", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<outType\>\"", "->", "\"\<JSON\>\""}], ",", 
+     RowBox[{"\"\<IncludeImageBase64\>\"", "->", "True"}], ",", 
+     RowBox[{"\"\<OCRModel\>\"", "->", "\"\<mistral-ocr-latest\>\""}], ",", 
+     RowBox[{"\"\<MistralAPIKey\>\"", "->", 
+      RowBox[{"SystemCredential", "[", "\"\<MISTRAL_API_KEY\>\"", "]"}]}], ",", 
+     RowBox[{"\"\<OverWrite\>\"", "->", "False"}], ",", 
+     RowBox[{"\"\<ImageRes\>\"", "->", "200"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"callMistralOCRPDF", "[", 
+   RowBox[{"filePath_String", ",", 
+    RowBox[{"outDirPath___", ":", "Automatic"}], ",", 
+    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ocrendpoint", "=", "\"\<https://api.mistral.ai/v1/ocr\>\""}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{"outDir", "=", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"outDirPath", "===", "Automatic"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"URLQ", "[", "filePath", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"DirectoryName", "[", "filePath", "]"}]}], 
+          "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+         "outDirPath"}], "\[IndentingNewLine]", "]"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"outFileName", "=", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"outDirPath", "===", "Automatic"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"URLQ", "[", "filePath", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"Last", "@", 
+            RowBox[{"FileNameSplit", "[", "filePath", "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Last", "@", 
+            RowBox[{"FileNameSplit", "[", "filePath", "]"}]}]}], 
+          "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Last", "@", 
+          RowBox[{"FileNameSplit", "[", "filePath", "]"}]}]}], 
+        "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", "workFor",
+       ",", "outBaseName", ",", "filestr", ",", "myRequest", ",", 
+      "jsonResponse", ",", "jsonBody", ",", "mdText"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+      RowBox[{"Check", " ", "if", " ", 
+       RowBox[{"the", " ", "'"}], 
+       RowBox[{"JSON", "'"}], " ", "Directory", " ", "is", " ", 
+       RowBox[{"there", ".", " ", "If"}], " ", "not"}], ",", " ", 
+      RowBox[{"create", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"outBaseName", "=", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"FileExtension", "[", "outFileName", "]"}], 
+         "===", "\"\<pdf\>\""}], ",", 
+        RowBox[{"FileBaseName", "[", "outFileName", "]"}], ",", 
+        "outFileName"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"workFor", "=", 
+      RowBox[{"choiceMistralFile", "[", 
+       RowBox[{"outDir", ",", "outBaseName", ",", 
+        RowBox[{"OptionValue", "[", "\"\<outType\>\"", "]"}], ",", 
+        RowBox[{"OptionValue", "[", "\"\<OverWrite\>\"", "]"}]}], "]"}]}], ";",
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"First", "[", "workFor", "]"}], "===", "\"\<JSON\>\""}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Prepare", " ", "the", " ", "JSON", " ", "body", " ", "of", " ", 
+         "the", " ", "request"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"filestr", "=", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"URLQ", "[", "filePath", "]"}], ",", "\[IndentingNewLine]",
+            "filePath", ",", "\[IndentingNewLine]", 
+           RowBox[{"getMistralSignedURL", "[", "filePath", "]"}]}], 
+          "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"jsonBody", "=", "\[IndentingNewLine]", 
+         RowBox[{"ExportString", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\"\<model\>\"", "->", 
+              RowBox[{"OptionValue", "[", "\"\<OCRModel\>\"", "]"}]}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"\"\<document\>\"", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\"\<type\>\"", "->", "\"\<document_url\>\""}], ",", 
+                RowBox[{"\"\<document_url\>\"", "->", "filestr"}]}], "}"}]}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<include_image_base64\>\"", "->", "True"}]}], 
+            "\[IndentingNewLine]", "}"}], ",", "\"\<JSON\>\""}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Create", " ", "the", " ", "HTTP", " ", "request"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"myRequest", "=", "\[IndentingNewLine]", 
+         RowBox[{"HTTPRequest", "[", 
+          RowBox[{"ocrendpoint", ",", "\[IndentingNewLine]", 
+           RowBox[{"<|", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\"\<Method\>\"", "->", "\"\<POST\>\""}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"\"\<Headers\>\"", "->", "\[IndentingNewLine]", 
+              RowBox[{"<|", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"\"\<Authorization\>\"", "->", 
+                 RowBox[{"\"\<Bearer \>\"", "<>", 
+                  RowBox[{
+                  "OptionValue", "[", "\"\<MistralAPIKey\>\"", "]"}]}]}], ",",
+                 "\[IndentingNewLine]", 
+                
+                RowBox[{"\"\<Content-Type\>\"", 
+                 "->", "\"\<application/json\>\""}]}], "\[IndentingNewLine]", 
+               "|>"}]}], ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<Body\>\"", "->", "jsonBody"}]}], 
+            "\[IndentingNewLine]", "|>"}]}], "\[IndentingNewLine]", "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Execute", " ", "the", " ", "request", " ", "and", " ", "get", " ", 
+          "the", " ", "JSON", " ", "response"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"jsonResponse", "=", 
+         RowBox[{"URLExecute", "[", "myRequest", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Convert", " ", "the", " ", "list", " ", "of", " ", "rules", " ", 
+          "to", " ", "an", " ", "association", " ", "for", " ", "easier", " ",
+           "access", " ", "by", " ", "key"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"jsonResponse", "=", 
+         RowBox[{
+          RowBox[{"ResourceFunction", "[", "\"\<ToAssociations\>\"", "]"}], "[",
+           "jsonResponse", "]"}]}], 
+        RowBox[{"(*", 
+         RowBox[{"Replace", "[", 
+          RowBox[{"jsonResponse", ",", 
+           RowBox[{"l_List", ":>", 
+            RowBox[{"Association", "[", "l", "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}], "*)"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"FileExistsQ", "[", 
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"outDir", ",", "\"\<JSON\>\""}], "}"}], "]"}], "]"}]}], 
+          ",", 
+          RowBox[{"CreateDirectory", "[", 
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{"outDir", ",", "\"\<JSON\>\""}], "}"}], "]"}], "]"}]}], 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Export", "[", 
+         RowBox[{
+          RowBox[{"FileNameJoin", "[", 
+           RowBox[{"{", 
+            RowBox[{"outDir", ",", "\"\<JSON\>\"", ",", 
+             RowBox[{"outBaseName", "<>", "\"\<.json\>\""}]}], "}"}], "]"}], ",",
+           "jsonResponse", ",", "\"\<JSON\>\""}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"outDir", ",", "\"\<JSON\>\"", ",", 
+            RowBox[{"outBaseName", "<>", "\"\<.json\>\""}]}], "}"}], "]"}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"jsonResponse", "=", 
+         RowBox[{
+          RowBox[{"ResourceFunction", "[", "\"\<ToAssociations\>\"", "]"}], "[", 
+          RowBox[{"Import", "[", 
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{"outDir", ",", "\"\<JSON\>\"", ",", 
+              RowBox[{"outBaseName", "<>", "\"\<.json\>\""}]}], "}"}], "]"}], 
+           "]"}], "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Last", "[", "workFor", "]"}], "===", "\"\<MarkDown\>\""}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Check", " ", "if", " ", "the", " ", "response", " ", "contains", " ",
+          "the", " ", 
+         RowBox[{"expected", "'"}], 
+         RowBox[{"pages", "'"}], " ", "key"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"KeyExistsQ", "[", 
+            RowBox[{"jsonResponse", ",", "\"\<pages\>\""}], "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"If", " ", 
+             RowBox[{"the", "'"}], 
+             RowBox[{"pages", "'"}], " ", "key", " ", "is", " ", "missing"}], 
+            ",", 
+            RowBox[{"return", " ", "$Failed"}]}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "$Failed", "]"}]}], "\[IndentingNewLine]", 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"mdText", "=", 
+         RowBox[{"mistralJSON2MD", "[", 
+          RowBox[{"jsonResponse", ",", 
+           RowBox[{"OptionValue", "[", "\"\<IncludeImageBase64\>\"", "]"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"FileExistsQ", "[", 
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"outDir", ",", "\"\<MarkDown\>\""}], "}"}], "]"}], 
+            "]"}]}], ",", 
+          RowBox[{"CreateDirectory", "[", 
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{"outDir", ",", "\"\<MarkDown\>\""}], "}"}], "]"}], 
+           "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"OptionValue", "[", "\"\<IncludeImageBase64\>\"", "]"}], ",",
+           "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"outDir", ",", "\"\<MarkDown\>\"", ",", 
+               RowBox[{"outBaseName", "<>", "\"\<.md\>\""}]}], "}"}], "]"}], ",",
+             "mdText", ",", "\"\<Text\>\""}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"!", 
+              RowBox[{"FileNameJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "outDir", ",", "\"\<MarkDown\>\"", ",", "outBaseName"}], 
+                "}"}], "]"}]}], ",", 
+             RowBox[{"CreateDirectory", "[", 
+              RowBox[{"FileNameJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "outDir", ",", "\"\<MarkDown\>\"", ",", "outBaseName"}], 
+                "}"}], "]"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"exportExtImgsMistral", "[", 
+            RowBox[{"jsonResponse", ",", 
+             RowBox[{"FileNameJoin", "[", 
+              RowBox[{"{", 
+               RowBox[{
+               "outDir", ",", "\"\<MarkDown\>\"", ",", "outBaseName"}], "}"}],
+               "]"}], ",", 
+             RowBox[{"OptionValue", "[", "\"\<ImageRes\>\"", "]"}]}], "]"}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{"Export", "[", 
+            RowBox[{
+             RowBox[{"FileNameJoin", "[", 
+              RowBox[{"{", 
+               RowBox[{
+               "outDir", ",", "\"\<MarkDown\>\"", ",", "outBaseName", ",", 
+                RowBox[{"outBaseName", "<>", "\"\<.md\>\""}]}], "}"}], "]"}], 
+             ",", "mdText", ",", "\"\<Text\>\""}], "]"}]}]}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9562737861711197`*^9, 3.9562737993093166`*^9}, {
+   3.956273852906893*^9, 3.956273870762081*^9}, {3.956274088806328*^9, 
+   3.956274102790985*^9}, {3.956274175654955*^9, 3.9562742795892086`*^9}, {
+   3.9562744286601486`*^9, 3.9562744381254463`*^9}, {3.956275172820759*^9, 
+   3.956275182339855*^9}, {3.956275284628004*^9, 3.956275294663275*^9}, {
+   3.9562753768174305`*^9, 3.9562754184995575`*^9}, {3.956275449708235*^9, 
+   3.95627546085948*^9}, {3.956276647251585*^9, 3.956276649346447*^9}, {
+   3.956276786358774*^9, 3.9562768260344677`*^9}, {3.956277066132412*^9, 
+   3.9562771249305344`*^9}, {3.9562817040403748`*^9, 
+   3.9562817056039295`*^9}, {3.956281941089445*^9, 3.956281953891798*^9}, {
+   3.9562819930124645`*^9, 3.9562820584255314`*^9}, {3.956282128617424*^9, 
+   3.9562821462659607`*^9}, {3.956282182981201*^9, 3.956282184365822*^9}, {
+   3.9562822640587883`*^9, 3.956282320058264*^9}, {3.9562823649469833`*^9, 
+   3.956282406309082*^9}, {3.9562825603856106`*^9, 3.956282605687849*^9}, {
+   3.956282790642082*^9, 3.9562831760098553`*^9}, {3.95628329814966*^9, 
+   3.956283337442732*^9}, {3.956283370465069*^9, 3.9562833764114456`*^9}, {
+   3.956283543526848*^9, 3.956283549988514*^9}, {3.9564494652255383`*^9, 
+   3.9564494731834183`*^9}, {3.956450693293415*^9, 3.956450696216036*^9}, {
+   3.9564512950007706`*^9, 3.956451428104849*^9}, {3.956451481278244*^9, 
+   3.9564515688682365`*^9}, {3.956451851907425*^9, 3.956451871093977*^9}, {
+   3.956451909226671*^9, 3.9564519132531796`*^9}, {3.956452298458254*^9, 
+   3.9564523263961105`*^9}, {3.9564523693794117`*^9, 
+   3.9564523780204124`*^9}, {3.956452430258644*^9, 3.956452465445511*^9}, {
+   3.9564525066613255`*^9, 3.956452593914974*^9}, {3.9564527854959164`*^9, 
+   3.9564527909793663`*^9}, {3.9564528370744667`*^9, 3.956452861328373*^9}, 
+   3.956452895676094*^9, {3.9564529306596966`*^9, 3.9564529910067825`*^9}, {
+   3.9564530989109726`*^9, 3.9564531645132885`*^9}, {3.9564533063967686`*^9, 
+   3.9564533205414925`*^9}, {3.956454152953306*^9, 3.9564542159271317`*^9}, {
+   3.956454523530979*^9, 3.956454562054287*^9}, {3.956454635988394*^9, 
+   3.9564546450797844`*^9}, {3.956454698917204*^9, 3.956454709245203*^9}, 
+   3.956454824677101*^9, {3.9564549593759766`*^9, 3.9564549687200203`*^9}, {
+   3.9564618127826843`*^9, 3.9564618170100803`*^9}, {3.956461883645567*^9, 
+   3.956461883824791*^9}, {3.9564619199260864`*^9, 3.95646194848542*^9}, {
+   3.9564619950527267`*^9, 3.956462022718651*^9}, {3.956462055989773*^9, 
+   3.956462061305008*^9}, {3.95646211448184*^9, 3.9564621338217983`*^9}, {
+   3.956462174089964*^9, 3.956462193567131*^9}, {3.9564622281408577`*^9, 
+   3.9564622316210365`*^9}, {3.9564623071660786`*^9, 3.9564624493426*^9}, {
+   3.956462491978901*^9, 3.956462500478447*^9}, {3.9564625353438034`*^9, 
+   3.956462574817934*^9}, 3.9564626212337685`*^9, {3.956462676665718*^9, 
+   3.9564626772199*^9}, {3.95646272272789*^9, 3.956462726880226*^9}, {
+   3.956463645368355*^9, 3.9564636659402847`*^9}, {3.9564639103888493`*^9, 
+   3.9564639770941143`*^9}, {3.956464500637169*^9, 3.956464515294733*^9}, {
+   3.956465456824518*^9, 3.9564654605323143`*^9}, {3.9564654906063824`*^9, 
+   3.9564655431181526`*^9}, {3.956465593694412*^9, 3.9564657304232616`*^9}, {
+   3.956465773594227*^9, 3.9564658672944927`*^9}, {3.956466188563572*^9, 
+   3.9564662546791553`*^9}, {3.9564663025064125`*^9, 
+   3.9564663873796616`*^9}, {3.956466429573801*^9, 3.956466457847687*^9}, {
+   3.9564665775473194`*^9, 3.9564665781910267`*^9}, {3.956466624178217*^9, 
+   3.956466678081171*^9}, {3.956490038791004*^9, 3.956490047756132*^9}, {
+   3.9564983711220856`*^9, 3.956498466826935*^9}, 3.9564986487254124`*^9, {
+   3.9565050334518375`*^9, 3.956505040055197*^9}, {3.956505216017769*^9, 
+   3.956505217711815*^9}, {3.9565052629404793`*^9, 3.956505264507492*^9}, {
+   3.956505322239046*^9, 3.956505386876257*^9}, {3.956505445878666*^9, 
+   3.9565056978451138`*^9}, {3.9565057597887497`*^9, 3.956505808887356*^9}, 
+   3.9565060108553104`*^9, {3.956506098230501*^9, 3.956506132014761*^9}, {
+   3.956536867368572*^9, 3.9565370381286526`*^9}, {3.9565370837044773`*^9, 
+   3.9565372309103947`*^9}, {3.9565372862121353`*^9, 3.956537287617256*^9}, {
+   3.956537721513632*^9, 3.956537770150141*^9}, {3.956537873091324*^9, 
+   3.9565378829628944`*^9}, {3.9565379493319187`*^9, 3.956537955388916*^9}, {
+   3.956537988078993*^9, 3.956538165820713*^9}, {3.9565382155251713`*^9, 
+   3.9565382164691715`*^9}, {3.956538248257679*^9, 3.956538248642679*^9}, {
+   3.9565384907951927`*^9, 3.9565384911271973`*^9}, {3.9565735204179*^9, 
+   3.9565736153701744`*^9}, {3.956573681381706*^9, 3.956573705664831*^9}, {
+   3.95657377643322*^9, 3.956573825990364*^9}, {3.956573880671583*^9, 
+   3.9565738837445126`*^9}, {3.956573924311764*^9, 3.9565740139855175`*^9}, {
+   3.9565740531483307`*^9, 3.9565741108783226`*^9}, {3.9565741991058044`*^9, 
+   3.956574373176901*^9}, {3.9565744155750504`*^9, 3.9565745291676235`*^9}, {
+   3.956574627797386*^9, 3.956574652711851*^9}, {3.9565947662418594`*^9, 
+   3.9565947745271893`*^9}, {3.956594841112892*^9, 3.956594845406296*^9}, {
+   3.956594887654688*^9, 3.956594939815031*^9}, {3.956594986097227*^9, 
+   3.9565951762824745`*^9}, {3.9565952114427986`*^9, 3.956595269176731*^9}, {
+   3.9565953299472237`*^9, 3.9565953732721786`*^9}, {3.9565955150236073`*^9, 
+   3.956595616390234*^9}, {3.9565956829292164`*^9, 3.9565957135641766`*^9}, {
+   3.956595770869583*^9, 3.9565958309598713`*^9}, {3.9565959481677265`*^9, 
+   3.9565960278033943`*^9}, {3.9565960734401855`*^9, 3.956596114804775*^9}, {
+   3.956596152372896*^9, 3.9565961857330856`*^9}, {3.956596324153721*^9, 
+   3.9565963529053135`*^9}, {3.956596416597807*^9, 3.956596418041918*^9}, {
+   3.9565968504663734`*^9, 3.9565969820908737`*^9}, {3.956597034929659*^9, 
+   3.956597116022152*^9}, {3.9565971604584503`*^9, 3.95659726794495*^9}, {
+   3.956597532987276*^9, 3.9565975571753597`*^9}, {3.956597615709633*^9, 
+   3.9565976938857174`*^9}, {3.9565977247956314`*^9, 
+   3.9565978129840183`*^9}, {3.9565979186759415`*^9, 3.956597931984379*^9}, {
+   3.956599669115587*^9, 3.9565998540657997`*^9}, {3.956599898349119*^9, 
+   3.9565999889569645`*^9}, {3.956600133694092*^9, 3.956600133878628*^9}, {
+   3.9566003502548065`*^9, 3.956600362887581*^9}, {3.9566008678470345`*^9, 
+   3.956600868370205*^9}, 3.9566009493105927`*^9, {3.95662893193277*^9, 
+   3.9566289516664677`*^9}, {3.956629011322815*^9, 3.956629025187973*^9}},
+ CellLabel->
+  "5/19/25 13:07:09 \
+In[52]:=",ExpressionUUID->"c1f77f06-2cf9-8949-a1e3-c66d847777f9"]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Files and Folders", "Subsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 
+  3.9547014611497765`*^9}},ExpressionUUID->"3f7ddf40-e4c2-a044-9576-\
+20d81aab1bea"],
+
+Cell[TextData[{
+ StyleBox["Replace the path to the directory where the PDF file(s) is(are).",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[" ",
+  FontSlant->"Italic"],
+ "\[LineSeparator]Remember, just the path to the directory, not the file \
+path.\nWe have kept the example in the same folder as the Notebook, so the \
+following cell works..."
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+   3.9561391743366547`*^9, 3.956139234447109*^9}, 3.9561426263638897`*^9, {
+   3.9566013652394295`*^9, 3.9566014067779255`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"617719f1-e963-6c46-9c7d-6cc2bf7a9528"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$pdfDir1", "=", 
+   RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.9553744641429462`*^9, 3.9553744757583942`*^9}, 
+   3.956137528389372*^9, {3.956601353748869*^9, 3.9566013591606503`*^9}},
+ CellLabel->
+  "5/19/25 06:01:51 \
+In[21]:=",ExpressionUUID->"fb07aba8-e84f-3347-a55d-6fd9ebf5f6c4"],
+
+Cell[TextData[{
+ "This following code lists all the PDFs in that folder. You can use all of \
+them as the \[OpenCurlyQuote]",
+ StyleBox["files", "Input"],
+ "\[CloseCurlyQuote]---as shown below---or you can choose only one of those \
+(as shown in the \[OpenCurlyQuote]",
+ StyleBox["flnm1", "Input"],
+ "\[CloseCurlyQuote] symbol)."
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"caa74d4b-73e6-9c4b-bcaf-4c97d3482aef"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FileNames", "[", 
+   RowBox[{"\"\<*.pdf\>\"", ",", "$pdfDir1"}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellLabel->
+  "5/19/25 05:28:03 \
+In[22]:=",ExpressionUUID->"de89d10c-f6a9-064b-941c-f70305473a1f"],
+
+Cell[BoxData[
+ RowBox[{"files1", "=", 
+  RowBox[{"FileNames", "[", 
+   RowBox[{"\"\<*.pdf\>\"", ",", "$pdfDir1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9547005417751465`*^9, 3.954700543569393*^9}, {
+   3.9547005894081306`*^9, 3.954700645088024*^9}, {3.9547006848388424`*^9, 
+   3.9547006968626137`*^9}, {3.9547007992050343`*^9, 3.954700845614647*^9}, {
+   3.9547008974384613`*^9, 3.9547009023856297`*^9}, 3.954700950126459*^9, 
+   3.9547013792234726`*^9, {3.954726209418293*^9, 3.954726215489292*^9}, {
+   3.9547271058922405`*^9, 3.954727111657484*^9}, 3.9547634478006115`*^9, {
+   3.9548066025337543`*^9, 3.954806627102127*^9}, {3.9548198998722744`*^9, 
+   3.95481992375515*^9}, {3.954820257311718*^9, 3.9548203310218143`*^9}, {
+   3.954821284224119*^9, 3.9548212846284866`*^9}, {3.954858792505234*^9, 
+   3.9548587959730988`*^9}, {3.956139323790415*^9, 3.9561393299610176`*^9}},
+ CellLabel->
+  "5/19/25 05:28:17 \
+In[23]:=",ExpressionUUID->"a4cfb45e-c4b6-8a41-ac8c-3e7a6020bd36"],
+
+Cell[BoxData[
+ RowBox[{"flnm1", "=", 
+  RowBox[{
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*.pdf\>\"", ",", "$pdfDir1"}], "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9547614689840355`*^9, 3.954761487551529*^9}, {
+   3.9548148037055607`*^9, 3.954814805117298*^9}, 3.9548217458752594`*^9, {
+   3.956128482409588*^9, 3.9561284856937466`*^9}, 3.9566015058078804`*^9},
+ CellLabel->
+  "5/19/25 06:02:01 \
+In[22]:=",ExpressionUUID->"1586aa82-e57e-8049-9b8b-f52e384635a8"],
+
+Cell[TextData[{
+ "These are just some examples for you to able to play with paths and \
+FileNames... \[LineSeparator]",
+ StyleBox["You can happily skip these",
+  FontWeight->"Bold",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561394185837746`*^9, 3.9561394616357384`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"a0a35d88-5fef-2c42-bc4d-9d7008e51e44"],
+
+Cell[BoxData[{
+ RowBox[{"FileBaseName", "[", "flnm1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DirectoryName", "[", "flnm1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "==", "$pdfDir1"}]}], "Input",
+ CellChangeTimes->{{3.9546948227660313`*^9, 3.9546948874985294`*^9}, {
+  3.954700971038269*^9, 3.954700973405117*^9}, {3.9561394990486717`*^9, 
+  3.956139507090767*^9}},
+ CellLabel->
+  "5/19/25 05:28:35 \
+In[25]:=",ExpressionUUID->"e0d3eae5-fe35-884c-9ebf-b6389140c34a"],
+
+Cell[BoxData[{
+ RowBox[{"FileNameJoin", "[", 
+  RowBox[{"{", 
+   RowBox[{"$pdfDir1", ",", 
+    RowBox[{
+     RowBox[{"FileBaseName", "[", 
+      RowBox[{"files1", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "]"}], "<>", "\"\<.pdf\>\""}]}], "}"}],
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"FileNameJoin", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"DirectoryName", "[", 
+     RowBox[{"files1", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+    RowBox[{
+     RowBox[{"FileBaseName", "[", 
+      RowBox[{"files1", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "]"}], "<>", "\"\<.pdf\>\""}]}], "}"}],
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "==", "%%"}]}], "Input",
+ CellChangeTimes->{{3.9546949156673927`*^9, 3.954694952277235*^9}, {
+  3.954701001571518*^9, 3.954701007495409*^9}, {3.954726236653324*^9, 
+  3.954726239684326*^9}},
+ CellLabel->
+  "5/19/25 05:28:39 \
+In[28]:=",ExpressionUUID->"7e9c7dd9-edc8-0742-a8dc-4e15e7c11fbe"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Single Test Cases", "Section",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.956633714493128*^9, 3.9566337158151455`*^9}, {
+  3.956635080956579*^9, 3.9566350947344666`*^9}, {3.9566351530722904`*^9, 
+  3.9566351544126377`*^9}},ExpressionUUID->"94f22785-362e-2049-9a32-\
+7c2758e94891"],
+
+Cell["\<\
+Standalone images and multipage PDFs are treated differently in the HTTP \
+endpoint for Mistral. This means there are two different functions to handle \
+images and PDFs here.
+Any file is essentially a filePath-string, be it a local file or a URL. Here \
+are separate use-cases:\
+\>", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"db6f04fb-1940-6743-bc64-03e7b7262b58"],
+
+Cell[CellGroupData[{
+
+Cell["Single Images", "Subsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 3.956466907419201*^9}, {
+  3.9566351142437077`*^9, 
+  3.956635135641676*^9}},ExpressionUUID->"b7574e01-df82-744c-bcdb-\
+c0b4d319bd93"],
+
+Cell[CellGroupData[{
+
+Cell["Image from URL", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 
+  3.956466907419201*^9}},ExpressionUUID->"0ff71490-6923-764e-b892-\
+4f72104d96a9"],
+
+Cell["This is a test image provided by Mistral...", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017811444187`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"2ea376a0-bbec-3d4f-8604-92f247f79b5b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "tstImageURL1", 
+   "=", "\"\<https://raw.githubusercontent.com/mistralai/cookbook/refs/heads/\
+main/mistral/ocr/receipt.png\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.9564519400599003`*^9, 3.956451946430025*^9}},
+ CellLabel->
+  "5/19/25 06:02:33 \
+In[23]:=",ExpressionUUID->"eecf5431-0948-534e-bdc2-262604ed4e1f"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", "tstImageURL1", "]"}]], "Input",
+ CellChangeTimes->{{3.956601794416315*^9, 3.956601803028492*^9}},
+ CellLabel->
+  "5/19/25 05:33:23 \
+In[32]:=",ExpressionUUID->"6e8242f9-5bcc-f642-89ac-03c31f0e614f"],
+
+Cell[TextData[{
+ StyleBox["callMistralOCRImage", "Code"],
+ " is the function for handling images. \nIt takes the following arguments:\
+\[LineSeparator]\n",
+ StyleBox["callMistralOCRImage[", "Input"],
+ StyleBox["fileName_String", "Input",
+  FontSlant->"Italic"],
+ StyleBox[", ", "Input"],
+ StyleBox["outFileBaseName___", "Input",
+  FontSlant->"Italic"],
+ StyleBox[" : Automatic, OptionsPattern[]]", "Input"]
+}], "Text",
+ CellChangeTimes->{{3.956603653336649*^9, 3.956603737043352*^9}, {
+  3.9566037785474358`*^9, 3.9566038873345547`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"be722b1e-25e8-c84b-9f43-110c6faef07e"],
+
+Cell["\<\
+As you can see below, the default output is in markdown format and it prints \
+the result, instead of exporting it. This is better for just one image...\
+\>", "Text",
+ CellChangeTimes->{{3.956603653336649*^9, 3.956603737043352*^9}, {
+  3.9566037785474358`*^9, 3.956603986683449*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"2d142101-5f02-854b-90cb-dcdf2ba68940"],
+
+Cell[BoxData[
+ RowBox[{"Options", "@", "callMistralOCRImage"}]], "Input",
+ CellChangeTimes->{{3.9566018413121834`*^9, 3.956601844159813*^9}},
+ CellLabel->
+  "5/19/25 06:02:36 \
+In[24]:=",ExpressionUUID->"8b4630bc-2ed7-1e4d-832b-3395b9cf8c47"],
+
+Cell["Omitting the second argument makes", "Text",
+ CellChangeTimes->{{3.956603653336649*^9, 3.956603737043352*^9}, {
+  3.9566037785474358`*^9, 3.9566040195443993`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"b30c80e2-0a67-fc44-a196-de360980de26"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", "tstImageURL1", "]"}]], "Input",
+ CellChangeTimes->{{3.9564507203391457`*^9, 3.9564507238479767`*^9}, {
+   3.9564518898156166`*^9, 3.9564518974344788`*^9}, {3.9564519520219193`*^9, 
+   3.956451955424917*^9}, 3.9564521092696934`*^9},
+ CellLabel->
+  "5/19/25 06:14:31 \
+In[30]:=",ExpressionUUID->"998c4f0f-d5e0-ff43-bef8-e22adce2e61f"],
+
+Cell[TextData[{
+ "This exports the ",
+ StyleBox["MarkDown",
+  FontSlant->"Italic"],
+ " output named \[OpenCurlyQuote]",
+ StyleBox["receipt.md",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] in the ",
+ StyleBox["NotebookDirectory[]", "Code"]
+}], "Text",
+ CellChangeTimes->{{3.956603653336649*^9, 3.956603737043352*^9}, {
+  3.9566037785474358`*^9, 3.9566040195443993`*^9}, {3.956604305572405*^9, 
+  3.9566043538630104`*^9}, {3.956604505867655*^9, 3.9566045212388954`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"6ae95c25-e4ea-ac4b-86f6-75f5aa050eb5"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImageURL1", ",", 
+   RowBox[{"\"\<Export\>\"", "->", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9564668378891487`*^9, 3.956466840878786*^9}},
+ CellLabel->
+  "5/19/25 06:17:58 \
+In[31]:=",ExpressionUUID->"96ef8a55-013a-7c4b-9086-a6de31f8df09"],
+
+Cell[TextData[{
+ "This exports the raw ",
+ StyleBox["JSON",
+  FontSlant->"Italic"],
+ " output named \[OpenCurlyQuote]",
+ StyleBox["receipt.json",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] in the ",
+ StyleBox["NotebookDirectory[]", "Code"]
+}], "Text",
+ CellChangeTimes->{{3.956603653336649*^9, 3.956603737043352*^9}, {
+  3.9566037785474358`*^9, 3.9566040195443993`*^9}, {3.956604305572405*^9, 
+  3.9566043538630104`*^9}, {3.956604505867655*^9, 3.9566045519419174`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"7eef7b23-ae50-c649-a9b1-8a0a0a873cc5"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImageURL1", ",", 
+   RowBox[{"\"\<Export\>\"", "->", "True"}], ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<JSON\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.956466759579735*^9, 3.956466759794489*^9}, {
+  3.956466796777813*^9, 3.956466797088396*^9}},
+ CellLabel->
+  "5/19/25 06:19:16 \
+In[32]:=",ExpressionUUID->"04851ed4-f1d2-0f4f-9575-b9cd072eb2b8"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Image from Local File", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 
+  3.9564669307052155`*^9}},ExpressionUUID->"4e1f54bc-7eeb-f44e-a8c0-\
+a1210bb764ee"],
+
+Cell["\<\
+These examples show ways of performing OCR on your local files.\
+\[LineSeparator]The folder \[OpenCurlyQuote]TestImages\[CloseCurlyQuote] \
+contains three images:
+1) An image with Bengali script on it.
+2) & 3) JPEG and PNG versions of the same image with English text.\
+\>", "Text",
+ CellChangeTimes->{{3.9565117654689064`*^9, 3.9565117983204784`*^9}, {
+  3.956604642258831*^9, 3.9566046815929775`*^9}, {3.9566047482467155`*^9, 
+  3.9566048316021976`*^9}, {3.956604873751751*^9, 3.956604896631052*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"bb589118-6901-0342-acbc-9aa2293a62ef"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"FileNames", "[", 
+   RowBox[{"\"\<*.jpeg\>\"", ",", 
+    RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.956489823379776*^9, 3.956489839127775*^9}},
+ CellLabel->
+  "5/17/25 22:27:19 \
+In[11]:=",ExpressionUUID->"2187951a-e9a0-8149-ac54-d7ccff654179"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tstImagePath1", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<TestImages\>\"", 
+      ",", "\"\<Test_Image_1.jpeg\>\""}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"tstImagePath2", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<TestImages\>\"", 
+      ",", "\"\<Test_Image_2.jpeg\>\""}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"tstImagePath3", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<TestImages\>\"", 
+      ",", "\"\<Test_Image_3.png\>\""}], "}"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9564496800686855`*^9, 3.9564496938284664`*^9}, {
+   3.956489887837776*^9, 3.956489890253481*^9}, 3.9564899240375767`*^9, {
+   3.9566049082446175`*^9, 3.9566049316431217`*^9}, {3.9566049696851864`*^9, 
+   3.9566049700597305`*^9}},
+ CellLabel->
+  "5/19/25 06:26:10 \
+In[37]:=",ExpressionUUID->"e1e523d7-ff8b-d14c-be98-1cb3167d636c"],
+
+Cell[BoxData[
+ RowBox[{"Import", "/@", 
+  RowBox[{"{", 
+   RowBox[{"tstImagePath1", ",", "tstImagePath2", ",", "tstImagePath3"}], 
+   "}"}]}]], "Input",
+ CellChangeTimes->{{3.9566049469900627`*^9, 3.956604961462593*^9}},
+ CellLabel->
+  "5/19/25 06:26:11 \
+In[40]:=",ExpressionUUID->"fbd17acd-2d5c-fd4e-b163-f34d06cf567f"],
+
+Cell["Default behavior: (shows performance on both JPEG and PNG)", "Text",
+ CellChangeTimes->{{3.9565117654689064`*^9, 3.9565117983204784`*^9}, {
+  3.9566049970161877`*^9, 3.9566050498497543`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"c141e58b-a483-0e4b-a0a1-76cba01946e8"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", "tstImagePath2", "]"}]], "Input",
+ CellChangeTimes->{{3.956511749115898*^9, 3.956511749585371*^9}, {
+  3.9566049873056984`*^9, 3.956604987442215*^9}},
+ CellLabel->
+  "5/19/25 06:26:52 \
+In[41]:=",ExpressionUUID->"17a846c5-2b23-e44a-ba70-11af20a37364"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", "tstImagePath3", "]"}]], "Input",
+ CellChangeTimes->{{3.9564520891962624`*^9, 3.95645211613122*^9}, {
+   3.956452408922695*^9, 3.9564524242437687`*^9}, 3.95645300555768*^9, 
+   3.9564530375187416`*^9, 3.9564530777752857`*^9, {3.956461837949127*^9, 
+   3.9564618380791264`*^9}, {3.9564622804149055`*^9, 3.956462281120964*^9}, {
+   3.9564624562362537`*^9, 3.956462465523571*^9}, {3.956462655044771*^9, 
+   3.956462692003847*^9}, {3.956462747878334*^9, 3.956462754401325*^9}, {
+   3.956466513781149*^9, 3.9564665207801456`*^9}, {3.9564669576022015`*^9, 
+   3.9564669586451263`*^9}, {3.956510060245861*^9, 3.956510061422447*^9}, {
+   3.9565101264433594`*^9, 3.9565101266054306`*^9}, 3.9565102036021175`*^9, {
+   3.9566050295859013`*^9, 
+   3.956605030106369*^9}},ExpressionUUID->"1544f896-3d53-7a4c-8885-\
+00ffa4d4581c"],
+
+Cell[TextData[{
+ "If ",
+ StyleBox["\[OpenCurlyDoubleQuote]outType\[CloseCurlyDoubleQuote]", "Code"],
+ " is set as JSON, we get an Association of keys and values, with a Key \
+called ",
+ StyleBox["\[OpenCurlyQuote]markdown\[CloseCurlyQuote]", "Code"],
+ ". \[LineSeparator]It clearly doesn\[CloseCurlyQuote]t work for the image \
+with Bengali in it :"
+}], "Text",
+ CellChangeTimes->{{3.9565117654689064`*^9, 3.9565117983204784`*^9}, {
+  3.9566051063443832`*^9, 3.9566051675212135`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"fe706365-1c30-2b42-bd8b-51bf012f372a"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImagePath2", ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<JSON\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.956605203702591*^9, 3.9566052038827763`*^9}},
+ CellLabel->
+  "5/19/25 06:30:04 \
+In[44]:=",ExpressionUUID->"2d37e683-b715-3047-92df-1b4deffa410a"],
+
+Cell["It clearly doesn\[CloseCurlyQuote]t work for the image with Bengali in \
+it :", "Text",
+ CellChangeTimes->{3.956605227932228*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"aa332466-821f-d144-8383-05db68d7ebed"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImagePath1", ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<JSON\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.956605072336973*^9, 3.95660508671579*^9}},
+ CellLabel->
+  "5/19/25 06:28:07 \
+In[43]:=",ExpressionUUID->"d180506f-1ae7-6743-b8a7-302c3860019f"],
+
+Cell[TextData[{
+ "When exported, the files are saved in the ",
+ StyleBox["NotebookDirectory[]", "Input"],
+ "..."
+}], "Text",
+ CellChangeTimes->{
+  3.956605227932228*^9, {3.9566052777073555`*^9, 3.9566052973603973`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"a5ce10b0-b6f0-3f49-a6a1-252c43410eaa"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImagePath2", ",", 
+   RowBox[{"\"\<Export\>\"", "->", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9564520891962624`*^9, 3.95645211613122*^9}, {
+   3.956452408922695*^9, 3.9564524242437687`*^9}, 3.95645300555768*^9, 
+   3.9564530375187416`*^9, 3.9564530777752857`*^9, {3.956461837949127*^9, 
+   3.9564618380791264`*^9}, {3.9564622804149055`*^9, 3.956462281120964*^9}, {
+   3.9564624562362537`*^9, 3.956462465523571*^9}, {3.956462655044771*^9, 
+   3.956462692003847*^9}, {3.956462747878334*^9, 3.956462754401325*^9}, {
+   3.956466513781149*^9, 3.9564665207801456`*^9}},
+ CellLabel->
+  "5/19/25 06:30:50 \
+In[45]:=",ExpressionUUID->"94ee51de-8d18-ee49-b0cf-f7da99d27658"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRImage", "[", 
+  RowBox[{"tstImagePath3", ",", 
+   RowBox[{"\"\<Export\>\"", "->", "True"}], ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<JSON\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9566053448452587`*^9, 3.95660535169948*^9}},
+ CellLabel->
+  "5/19/25 06:32:32 \
+In[47]:=",ExpressionUUID->"bf2945df-8181-c74e-a65f-eb3cfc44da54"]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Single PDFs", "Subsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 3.956466907419201*^9}, {
+  3.9566351142437077`*^9, 
+  3.9566351395718555`*^9}},ExpressionUUID->"80e1189e-3b08-aa4e-84e2-\
+37aed39b2edb"],
+
+Cell[CellGroupData[{
+
+Cell["PDF from URL", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 3.9564669307052155`*^9}, {
+  3.9564899546513786`*^9, 
+  3.956489958175377*^9}},ExpressionUUID->"aac132e8-a295-8049-aca0-\
+4f3a3cc6f2a9"],
+
+Cell[TextData[{
+ "Let\[CloseCurlyQuote]s perform OCR on a whole paper (Mistral), directly \
+from its arXiv URL... \nThe main function is callMistralOCRPDF. \nRemember, \
+unlike images, the ",
+ StyleBox["default behavior for documents is to export the output",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " to specific files. It takes similar arguments:\n",
+ StyleBox["callMistralOCRPDF[\n", "Code"],
+ StyleBox["filePath_String", "Code",
+  FontSlant->"Italic"],
+ StyleBox[",\n", "Code"],
+ StyleBox["outDirPath___", "Code",
+  FontSlant->"Italic"],
+ StyleBox[" : Automatic, \nOptionsPattern[]\n]", "Code"]
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566054768298435`*^9, 
+  3.956605571323021*^9}, {3.956605611206568*^9, 3.9566056618333874`*^9}, {
+  3.9566056926181374`*^9, 3.956605703052986*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"4a7e9cff-37ef-9e4d-8ef4-66f59c81a1de"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$pdfUrl1", "=", "\"\<https://arxiv.org/pdf/2201.04234\>\""}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.9566054571999454`*^9, 3.956605465535307*^9}},
+ CellLabel->
+  "5/19/25 06:34:26 \
+In[48]:=",ExpressionUUID->"3857d68d-74a7-4845-b23a-a7826bc4a603"],
+
+Cell[TextData[{
+ "This following code does the OCR job for you. It takes a few minutes to \
+finish, depending on the file size and your internet connection.\nSimply \
+running it creates a folder named \[OpenCurlyQuote]",
+ StyleBox["JSON",
+  FontWeight->"Bold"],
+ "\[CloseCurlyQuote] and puts a \[OpenCurlyQuote]",
+ StyleBox[".json",
+  FontWeight->"Bold"],
+ "\[CloseCurlyQuote] file in it. This is because the default option for ",
+ StyleBox["\[OpenCurlyDoubleQuote]outType\[CloseCurlyDoubleQuote]", "Input"],
+ " is ",
+ StyleBox["\[OpenCurlyDoubleQuote]JSON\[CloseCurlyDoubleQuote]", "Input"]
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566054768298435`*^9, 
+  3.956605571323021*^9}, {3.956605611206568*^9, 3.9566056618333874`*^9}, {
+  3.9566056926181374`*^9, 3.956605703052986*^9}, {3.956628867154991*^9, 
+  3.9566288960506287`*^9}, {3.9566291653684025`*^9, 3.9566292225024147`*^9}, {
+  3.956629278010002*^9, 3.956629286347521*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"8d67cc9a-3b0a-e948-895b-af5f45065cab"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", "$pdfUrl1", "]"}]], "Input",
+ CellChangeTimes->{3.956605528451542*^9},
+ CellLabel->
+  "5/19/25 13:07:34 \
+In[55]:=",ExpressionUUID->"8dabab48-26e9-d543-a15f-97b11774b0c1"],
+
+Cell[TextData[{
+ "As the argument ",
+ StyleBox["outDirPath", "Code",
+  FontSlant->"Italic"],
+ " is set to Automatic here (by not mentioning it), it is choden to be the \
+NotebookDirectory[].\n\nThere are two possible values for ",
+ StyleBox["\[OpenCurlyDoubleQuote]outType\[CloseCurlyDoubleQuote] ", "Input"],
+ ":  ",
+ StyleBox["\[OpenCurlyDoubleQuote]JSON\[CloseCurlyDoubleQuote]", "Output"],
+ " and ",
+ StyleBox["\[OpenCurlyDoubleQuote]MarkDown\[CloseCurlyDoubleQuote]", "Output"],
+ ".\[LineSeparator]\t",
+ StyleBox["\[OpenCurlyDoubleQuote]JSON\[CloseCurlyDoubleQuote]", "Input"],
+ " :  Creates a folder named \[OpenCurlyDoubleQuote]JSON\
+\[CloseCurlyDoubleQuote] and then puts the OCR result in that directory as a ",
+ StyleBox["\[OpenCurlyQuote].json\[CloseCurlyQuote]", "Code"],
+ " file.\[LineSeparator]\t",
+ StyleBox["\[OpenCurlyDoubleQuote]MarkDown\[CloseCurlyDoubleQuote]", "Input"],
+ " :  Creates a folder named \[OpenCurlyDoubleQuote]MarkDown\
+\[CloseCurlyDoubleQuote] and then puts the OCR result in that directory as \
+either an ",
+ StyleBox["\[OpenCurlyQuote].md\[CloseCurlyQuote]", "Code"],
+ " file, or a folder with the pdf file name with jpeg images and the same ",
+ StyleBox["\[OpenCurlyQuote].md\[CloseCurlyQuote]", "Code"],
+ " file."
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.956140064293827*^9, 3.9561401387190876`*^9}, {
+  3.9561401700379467`*^9, 3.956140326669159*^9}, {3.9561403597890396`*^9, 
+  3.956140403667858*^9}, {3.9561406488795357`*^9, 3.95614081466329*^9}, {
+  3.956142023801359*^9, 3.95614217553434*^9}, {3.9566292978813896`*^9, 
+  3.9566295320517273`*^9}, {3.9566295940922604`*^9, 3.9566296745056915`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"fc01769f-23ea-264f-97eb-521b1e60d310"],
+
+Cell[BoxData[
+ RowBox[{"Options", "@", "callMistralOCRPDF"}]], "Input",
+ CellChangeTimes->{{3.956605580811535*^9, 3.956605584363085*^9}},
+ CellLabel->
+  "5/19/25 06:36:24 \
+In[49]:=",ExpressionUUID->"89de18d0-d7f7-bf49-99fe-1b2d9c423a7c"],
+
+Cell["\<\
+If you open the JSON output, you\[CloseCurlyQuote]ll see that the file is \
+organized as tree like this:\
+\>", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.956140064293827*^9, 3.9561401387190876`*^9}, {
+  3.9561401700379467`*^9, 3.956140326669159*^9}, {3.9561403597890396`*^9, 
+  3.956140403667858*^9}, {3.9561406488795357`*^9, 3.95614081466329*^9}, {
+  3.956142023801359*^9, 3.95614217553434*^9}, {3.9566292978813896`*^9, 
+  3.9566295320517273`*^9}, {3.9566295940922604`*^9, 3.956629742091732*^9}, {
+  3.956629793739237*^9, 3.9566298289914017`*^9}, {3.9566315433058777`*^9, 
+  3.9566315438839607`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"b0523105-7e31-9d48-974c-34e7112c57cf"],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJzt3cGLJdd1x3El2WSZfyFQm2yyyiLLCGKIthMiIYSFZVsSAkkWmoAVKUOM
+wMRxvOmmjSRLMN2NmZ6AJEjPwvZiZiEFZtN/Sv6I3Ogwx6fPuffWrVvv1av3
+3rf5aOh+r15Vdat+Xbfqdf3qL3/4kztv/Olzzz1398/TP3de++nz77//2r/8
+41+kL/7p3btvvfnu6z9+4d1/fv3N19//2x/+WXrwf//kuef+Jv33/58Pf/XX
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAOAB3Xnz5m2++PTk9S//efPfx2edf2Am+
+/Orrm2cfv/v9H/7u7/9BHk+fpC/l8evrR+nzNGV81dOnT9957252bm5BACzJ
+ZkrKzz7+efoy5SilSVOToqR5lCklgBJM+3mag2YzfZKmTNOnz9NsdeZ2brIg
+eRw4Bs9/74XfPrhKcUj/ps9Hp7eJEymYkix5ysZHw5Ue1PQNz4ImM4mhk1e9
+9Mqrbt8KHBUJpnykz0enjwFM4UqP2IGo7lt1WGv3gMPt3ahGW1+uQU5PpTm4
+Z4EjcXP7Y3T6ejb18NBFsp7Nm/Dhhrjx6BU4ePP3m+lzOYFTGp1O3W9mSUgZ
+4uJ4bOR4M3tQKVOOHm9qtOMM3aJLjwMYCudpS+dsdXSaPU9rp9Tk6gztS3S5
+vI0ClEhGHlw91LM9bnyrI+QUqxQl3Sfa9zfPLy7T5zZo9n1MnaF9CQNaoG4j
++6940Apgpr5s2h3o0Hz+B0C77v2mHbUSTAAAAAAAAAAAAAAAAAAAAOwpvX5z
+9G9i9Q/aXelBaeKdXzctq1pZB72ktOWPiuVCVP54GItp/1v3vcvm6HpOyqb7
+Iez8fxwOXvtm+bOPfy6bepp49LLovcimTJNWVULacv0p2cRiRrOp1UBpUPfg
+6qE8otPHekx53GXTlu9pBKTQ7+T0TMaK0mqiQ0dXOqSP28IEyZS0Lth1sAUL
+Op9spXz6RNYnfWtSX+b6Px2yicWUsqmbd2XX43rAbE2Qzaa9ENt2EMnn+hLb
+RzTkSofkVbJiLoOjpfTtlfKxpt4im1hMzKZ2BI2O8dyGamel2Yzz11e5KNm7
+Mwy3+/rc6LTUDzYU8hgnayHrEzsDySaW4bLTcowmsht8+lJbarUtM45OZdzo
+9l9uPKkvjOmWRetxousQy+4ruyvl3dLJJhbTvd90pXmuPc9mM06T7aauZzPO
+ZFI2h+mV8uw3sVvdx5v1gWJlv6m695tuHRqzqeqV8hxvYiXaz9PGp7J3XnDH
+m/HEiz3x25LN+EtAKzf7sjmU3+LhPC3WY04/rTtPa7fb0nlau7jGbA7lE7CN
+2dxgpTzZxGJmdkfbg0G70Vbe39RltWdzuP3+ps65nk19ie5h3UFxB7KJxXBf
+kknIJhZDNichm1hM+3UoR47rUAAAAAAAAAAAAAAAAAAAKxcvFWlRr9sCsCtk
+E1gnsglsmx3TShvJyemZXuNs02evnj6/uHSXXcfiaHnQtRnsvEwe2KHv/+BH
+H3x4L/3bMrHLpm0tKLVD62VrsRHaFkcPocOWq7dwzH79yadpp/bBR/fuX1ym
+z0end9mMNSMSwGxfZfYpN9yVZ3/xy1+1lF0DhyrtK1Mk9csU0tG9ZxzT6q7N
+1bPbc7n6VKU42k45pwIIOABpKJv2mH/88qN76ZH6S1qyGQOoLZeV4midOKWy
+VIELHIm0lzw3+837u9hvOtrWzlkgHLl0jHn/u+PN867jzWw2h/LxZqU4ejAF
+ua7AFjhOc87TlrLZeJ52CHcg0tGs/RzAqMZsDs3vb9o3UOyBpyyIt1EAAAAA
+AAAAAAAAAAAAAAAAAAAAYOU++/yLlmvBKLkFFkY2gXUim8B8UjBycnqmdXlf
+fvW1bc+z2dFirvRhC0ZSGK+vH/3u93+Ql9tsyqxcB3W2PMEuVKd3MbcF1NrY
+IJ+kuckK0BuG1ZrUFySJsK0+Nne25Mc1S9uYyKu0fkQDpV1e8vho6ZBOqTNP
+j6dPZKGSQV0HLQ2Tx0v9RcBKTO11r8RnCFV7tk/PRtXt3eTLt3/yvrsBSns5
+vFZr2o5NyamW+Gm7Uez6c3MDdq6j190VzNoGy6FwSJi2fDesTS+3WZC9rR3K
+Drkbfbr+W1f8rvnS3wlpSvlcvtRP4pzJJtamo9e9PZt6sCmRdPtNl005Zoz3
+EcuWw2fvz6v50v2jHMmmL9Pj6cv0r6wY2cT6dfS6N2Yz7trq2ZQ02VFrx35T
+HpGh7E8//Nfr60fp8+TxkycSWHscSjaxclN73Ruz6R4fbt/lpJRNd8u/juPN
+4Vn0UjCT9Lk8leKp05NN7IuO87SN+03XC63JKmVzuH1yqeM8rc7Q3olMDnhd
+KzXZxIFpP9507z/KmFZeWMnmcHsP2/j+pkuW3cMO4fYNZBMAAAAAAAAAAAAA
+AAAAAAAAAGAB2c4BAAAAYI/YMa1cIn1+cWk7u6RzIF7vrG177ilti00fUijt
+2ilj9bSbGwNsHKpJnSQum1r9oS0E9kvbCqJ5tE/ZVi4NabZppFQWxI0YcKim
+dke7bJaa2weToGyvl+urlMdtC1AMnbzqpVdejSV7wIHp6I522XQNWpVW9iHX
+8OOmsbvReAMjDbL22Y7e3gjYUx3d0X3Z1MNDF8l6Nm/ChxvicqchHKqO7uiO
+bJZGp1P3m1kSUoa4ODxTu6M7sukOKmVkO3q86W5DFuc/+jiw7+acp23fb+o7
+HTK+jbf00vO0dkrXKR1vuBBvmwIcp77jTXt4KLcQ0n2ifX9T7lfrWp31hToq
+ti9hQAssIL7bAmAn3Dukjed/ACzAjloJJgAAAAAAAAAAAAAAAAAAAFZOO39G
+//ZV/3C9VOqll3od2J/RyrdcudZbL0FtufhULlw9vJ8SNq79WubRbB7qVSex
+xMyZlM3D/llhg9o3p5RB2UTTxLa0lmzKNOnbl5C2XK96qD8rbNBoNrUCKA3G
+Hlw9lEdkepvNSjG7THZyeqaFma7ZIFuGIMtNr4pPZWUb49MnMhMZRsq66ahS
+p4xrKN+CLWRIE//7f/yn+1lpCVJ6UFYv/YjSl7JcW47kkE2MKmVTN8vKLqNx
+vymTaRBso7ssJVv2Lp/b1s3KxlxqjJcY6lO22si+Sg+67atszZFdjXpnb/wB
+ZitWyCZGxWxqF9Do2GxSNnURtrwrlu/ZNj+3Byzdi6HSyelSZmNrl+7uKOG+
+F1eU5Pa2o4cDstDYMUg2Uec2sJZjK/faxmy607mVsnfZjLN1mtlsVhrj3avc
+UNNl087cThlv/iI/rviLpf3nTDYxarH9Zimb7ldBXzZLjfEbz6Zd58bfY+w3
+0Wex4832/aY8UsqmvQmL/AKpbOfd2bT7RJdBmYmsXmVAy/EmZmo/T1t67Zxs
+1o83G/eblcb4Sdl0x5ul8z+y/tfXjypnYjlPi/nm9KjPz2b9PG1jNodCY3x8
+VT2b7jytviqOXWUUPefGEGQTo3abTZF9a3JSNofCm6STsvng6qGOlt2xp7wf
+6mY758YQZBOjuP9Ixw9h0hnaLLKJUWSz44eQ9tEzb9pCNjGq/TqUAzbpb9Rn
+HmlyHQoAAAAAAAAAAAAAAAAAAMBRkSvCsn+qOnrZF4CdIJvAOpFNYIfcmFav
+kEof5xeXZBPYFZtNW+XhKnoAzORqYEent9l0pViuZR3AHN3ZjCdsOd4ENqg7
+m7H3IzY2A+jGfhNYJ443gcPAeVpgnXh/EwAAAAAAAAAAAAAAAAAAAAAAAI3u
+vPjyl199rZdtbtZnn39hrwktkWtF04c0MGxvfYA94i6p3qyWbLo6lK2uD7BH
+yCawNnJhtQwmnz59+s57dwfTeJA+0ifpS5k4RUbIU43xcdnUl+vi7NXc3377
+P48fP3ETZMlK6pzlG7FrCxwAu5+SpKRH9Cnd4CVW8pRkoSWeNpt2braMqG+/
+aavG0mvrWQZ2bmqX13A7Cy4XNjU2WUNzC59mM06vy+oe06aXSEun1hwBqzUn
+m7I31J2me1YGtPp45eaAlmZTcmTHnClT8kh3NnX4zfEp1m9+Nl3cNpjNm/Ax
+M5syf8oAsRe2sd+UR1w2Yw98VmW/WZpVezb1PBJngbB+Sx5vpi9HT79oNuWo
+0E6vT/VlU89HvfbjN9PL3a8U4AB0n6dtiUPpPK09NdSXTXumlwp6HCQdGdqk
+xDcxJTLX14/kqcb9VOn9TRsll023PpV1tuuQPudtFBwn/lwHWCeyCaxTNpv2
+r/7ix8y/B7ADYPfBmR8AAAAAAAAAAAAAAAAAAABsCr3uwDrRHQ2sE9kE1mbf
+e93tNWixjwjYd3va6+4mY2+LlVuyZ2+3ve52R9lYyAns0Jxs7levu30VA1qs
+3/xs7lGvu86cAS3Wbxv7zTX3usu9ihjQYv2WPN7cba/78GzffX39qGVNgL2z
+p73uOv/2N3SA/bKPve5u5RnQ4pit83wLZ2iBdWbTnaECjtDaet050gQAAAAA
+AAAAAAAAAAAA7Jfupp133rv74Oqhfpk+38kfnLd0bGr5SWkOLRe8AAvry6a7
+fnPlF4NUstnYSAYsj2ySTayTZDONSPV6apdT28ElT7ly6auH/xUvPMleQy3j
+z/OLS3lc4qzzb+zWe/zkicxBX64vtBfFXF8/0t8eks2T0zO3SnoTltFLxdOz
+9pePrDOJxlZp0GRLczUCdpu0T1X2m/JUtiNaNml5lS7Xfjl6JaZMZneCmk27
+ShpSzabNfqkapcLOnKYF9HHXOY5OH0OhhXhxu9WnKtmM41u98DO93D7lysFa
+rt2OI3DbFRarrTWbdrn2+2of08qUv/jlrxoL7QGnL5t249QCvZgy3ZIr2cx2
+ROv4M7vLky/bs+l+XWQrau0aZmM7NZvDs4H6mo+ssWabzaZLWWM2XcQOJpuu
+hBCYZH42NUrZ/abEdup+Ux7Z62zaE02cBUKHvmy6I7jtHW9uL5v148352dSD
+ZXeYDGzJwudpt5fN7HlavZPRzGzaM2aNp5SBmWRLOzk907cs3YZq3990Q189
+MeLesxhy98AdtpzN4faw8/ziUm+lVMmmrmpl0e63jX7vvI0CdIgpBrAT7s3T
+ym3LAHTQm6HEj9E3Fu0fCk4N5pzlAgAAAAAAAAAAAAAAAAAAYH/R606vO9aJ
+7mi6o7FOZJNsYp3odZeP0V53u3rdBwJAO3rdW/abbmCw8nEC1sldFzw6Pb3u
+7V1e9lcW1e6Yqi+b9LqP/qB0/gxo0Wez2aTXPftjYUCLDvOzSa97lswwLY4B
+Lfr0ZZNe95afbVrW4ydPEga0WAC97lPvVcSAFsug1320113J/BnQAnNso9ed
+M7RAhwV63et/Mw8ctnX2un/y6W840gQAAAAAAAAAAAAAAAAAADhIejn/ztck
+axt/sl5iuz1LF4JRegCIxbJp+wZL12m6Lk3gmC2WTXehtzYj6QS6VyWbWIYd
+007qXbcXZMUSLXnclqu7VzVebyXZfHD1MHvll7uwS6+ktuvg6hrsS3TFWgb2
+aWJBNrEMl82btt51u4nG0WC2XH24XRZte4QqZJVaKtn12upKl1GsPLKVs2lK
+/dVRqvEkm+jmrgsend5ls6V3PdZ96FOVsrvYmtWynbtVsq0gcRQq8680h7gl
+6kt0Zyqr54437Y+IbKLbzGxO6tqKJzYrJbGV3trK6sUmahlYumnc8DVbzxUz
+q9+7axccbv8msetANtFtmWy6sZ8+Vc/mTfiYk0175Kj7PjvE1aW4Ubr70Gza
+fboG2Z0UIpvotkA2K6PTSfvNFm4d7AxLA9Q4BwlgZawbR+k6cfZXCsVB6LBA
+Nt1YVDbjqTfzivPPcqukkYlnViVE2ZNLsqt154iG25F0Q+VS0tlvYjHd+013
+G9x4LwZXrj503fiycp42zi27f4wt7tlb9dnJ7G8btz5kE4vpO950d3y2Z1NL
+5eo6E3feps695Vp6I1VipW/luEPLeJInzs29qnSXXrKJw7CNcnUAHRYoVwfQ
+Z2q5up3efZQGlgAAAAAAAAAAAAAAAAAA7KOVd0cv6c6LL8tlnqNTph+XvZqM
+P+YHtqrx+q/GK08BbArZxKqsvDt6KBdEy8XUJ6dn8ansN5Kdoay5u0zbltm6
+mbuLyt2Y1l6dHa9SL60PkLXy7uhSQfQQ7k5iZ26/EVc2K6+K9dFDuaLELTe2
+l9jCk+w3W1kfHA93CeTo9Ovvji6V6blyMNcoa1dDp4x1XvZVdn0qyy1l0307
+ruY6uz4731qwpJnZXFt3tIoF0dnfA7HteTBZKNVHZ0s1S8vNZjOm3s6wtD47
+31qwpGWyuVh3dKUgujubdt9dymZluZVsureiyCasBbK5ZHd0pSB6g/vNeK+T
+ynIn7Tf1eyebWCCbi3VH1wuiO7LZeLxZX27f8SbZxFQr744uFUQPXdkcms/T
+Vpbbd56WbGKqlXdHVwqi+7I53D6WjPtQWbHKcvW7SBO88dbbpfc37QqQTawN
+f24KrATd0cBq0R0NAAAAAAAAAAAAAAAAAACAmVquIaKPHVge2QTWiWwC88nl
+wyenZ3rBu9Z9x6v7Y6O4PqVNAmmC84vL0ev0ySZQJzHUKEnpk/2ypanGlpxL
+El2LeHwV2cSxef57L/z2wVVKSvo3fT46vbsZgeu50hKbSsNbfMomulTGSDZx
+bCSY8pE+H53eVZ66hhyNUqVRPJbqtPSpkk0cm6n9rpOymW0Uj22Q6ZE0sWYz
+lnWQTRyhhfeb6ZFJ+8348p3/xIBl9B1vjmaz73gzPlW/AQcA1ZjNYRPnaYfq
+fQEAWO3ZHMqN4kPz+5saZ7IJAAAAAAAAAAAAAAAAAAAAAACw71zDz7545727
+D64e7nw1Olbpzosvp5+5Xm33zTffpkd2vvJYoX3MZryIe+faV2kff+DYiX3c
+VMgmDlXaPPTa5+vrR3ZTkcZa7eDKvkpLD9yl2Xb7lIKvk9Mzvc46zU0vu3Y9
+8Hahbm7nF5fpX3ultm0MaxkQ6mXgdrmlmdefqv8c3CrF5cqc7SNuTJv94Y+u
+Dw5G2rR0e5CNQf9fp6dGW6CHch2fy2aaRhck27P90q5DZaGu/MQ+1bKTcveD
+0OWOzrzylEufTOZWqbTc4fZ+02az/sPPrg/WbGqXl2sdsaGL5ZZpA5AtR1su
+3dxGs6mbkN2Mh2o1ny40BtC1DzUOIO1kutxJM9en4p1fSq8qLXcoZLPyw6+s
+z843P1RM7cCMJwYrG55uMLqduLmNZtNWD9l067KyC5UpY8VQRzbta+PwsjLz
+7FPx51AJe3a5QyGblR9+ZX12vvmh4ub2x+j0cetKj2g23VM2m9mNYSPZvAkf
+jfFpHNO647uZ2Yz3bMpms7TcoZzN0g+fbO6pbe83JVBL7jfV/GzGyeZnM+43
+48izstxhyn5zdPyw880PFcscb5YSlG3UnJTNuFC3tc/JZqyg1/MtfdlsPN6s
+LHfoPd4km8dg/nlajaR7XI6tJmVzuH2e1oZ9U/tNV3ktp6T6stl4nray3KGQ
+zdEfPtk8Eo3vb9pf4/ZV9t03+9ZeelDPT7Znc6i+r1faJmWDH71ftnvnUZab
+vXdSSzbdz8Et3a5Sabn6k5Efb+X9TTe2IZsAAACHyv4VXPzgj2cAAAAAAAAA
+AAAAAAAAAACwX+w1U/q3sjSfA6tSKkIBsFtkE0elfhG9XpIfR5K29MBedG+v
+0pIKBdekmq0IKNExbexYmFrnDuyXSjZdi4jNrP3cFnbFkhztCxpuFxO57ugS
+e7xp95uybtk5A+s0tWdvUomcyLbGZSttbYJicVxLy00pm+61sQ0eWJup/bSV
+bOqgsbTN21GlvMRFxu5GK1WuldXLZjPbqkefFVbOtXCMTl8/3nQVH3Z8m41k
+PZuxJGRONuNNzcgm1myD+804WaneuTGbHYeEk/abk+6HAiys73hTt2rXcmzp
+YaYbi8rjo8eb8ei1dFMVi+NNHLNSr3vsc7a3A9Ag2DtpZs/T2indiVbO0wIV
+9qAybeR2d5a9xbN7XF7ibgAtT8m9ld2AOR69VpSyOeTORO38Jwnsi/huC4Cd
+sDvQgb+yA9bEjlpbgmmndx+cdwUAAAAAAAAAAAAAAAAAAAAwSeOFsQAWRjaB
+dSKbaCSXV5+cnmlHQezH04vC5vfDx/r3Oil5OL+4jBe1pc07PZUWbVes1NtQ
+KpmvlDOUVrX0eGVWtn4/fS9k82h9/wc/+uDDe+nflol1i5KtJXYNbbAfPt4t
+YnQTtf1I2Tm7lrPsct03pVeU2+/Izby0qqXHK7OyS3c/bRyVX3/yafrN/MFH
+9+5fXKbPR6d3G9UQNt1N9cO/9MqrsRhzlCtqsH19rsos9gTq2pYKA7MFR+nB
+bIfnEDoPW2Y1hMrBxptZ4MCkfWWKpH6ZQjq694wBTJt3esRu5Jvqh5ed4KQW
+lBgr7bl1vx+yy01pvfdvH7cHTWdeWtXs45VZxXphjjePUxrKpj3mH7/86F56
+pP6SejY33g9vCwBbyvcmZdNNabMZj21dJX4sWimtany8MqtYzEt/2nFKe8lz
+s9+837Xf1MHhVvvh3dFiiUucXVDLfjM98sZbb08doDauqj5emRX7Tah0jHn/
+u+PN8xnHm9mDyo33w7f0xmePN2XDdutQOd4s3Yol+xsme/Z49FuozIrjTaj5
+52lL52xvZvTDu51L410Y4nla25tts9l+nlZT7H4vle7nUjpHZL+F0qwGztOi
+l2wtD64e6tkeN761R08z++HdcVnLeFI28rR62eO+OHguva9qT2fFHbE7KK6s
+auVbqNynm/c30WEjdxHa3vkN2q1xtPqyuVg/PNnE0ereb07th2+ZT3wPgmwC
+AAAAAAAAAAAAAAAAAA5Y6WrHLdnS38n3/S1iepVcK73z/wtAtHA2t6Qvm4fx
+veNQHcb2STZxGGxnlxRB6/Zpu7kqtdItg9JsO5aOae21yfHiZXt5cstF2fGa
+8dhPK1/K5dL//d137S6+LtVBuyusuVAajSZ1kgy3K0RiB4huqLZbQzbOSUXQ
+ts/HlnuUjjftJaKVRZdUOrHd2paqoUt10K6ZJPYUAVlTu6Pdhmq3/Jg43ePE
+DttRpSsxs9l0hVduqNnyq6DSie3CZVfMLqhUB72Rpggcm47u6Ni6Y8vb3R5B
+Q9FxybMOSl2mYjZdrGIWKoV4ldna3yelnOr3Xm+WlsE8R6Zo19EdHVNW6sAc
+bmezY8vMFmq5EMUha/Y4NB78ZpdVyqY+63bBLpvZKgb9KcUHgZKO7uip+03Z
+vGdWhUg0snddcU1Ew4x3Kkud2Pptxs6T+n4zS0LKEBejpnZH9x1vzj8BojG3
+IcoeSMaYtPy5Qky0i6H8Uoq3Jsx24Q7VgbSOdYG65c/TtuzaSnso9x5KdiOv
+3HmwpHKeNjtBnHOpDtp9s9xDAVvV+P6m2wK/nH6jW51ec6rZzN7kyL1NE99q
+LLkT7vkb42N/KQl3wqpUB+0OgRnQAhvUfkQJYEkdb9ECe8r+SZ772Eb/c+lt
+jtFxJjcMAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+2CP/ByBMi38=
+    "], {{0, 369.}, {231., 0}}, {0, 255},
+    ColorFunction->RGBColor,
+    ImageResolution->{96., 96.},
+    RasterInterpolation->"High"],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  DefaultBaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{231., 369.},
+  PlotRange->{{0, 231.}, {0, 369.}}]], "Input",ExpressionUUID->"1222b226-179e-\
+dc4a-b6b2-50439bb2d7b3"],
+
+Cell[TextData[{
+ "The keys \[OpenCurlyQuote]",
+ StyleBox["image_base64",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] contain Base64 encodings of the images in the document. \
+\n\nThe markdown files are created from the JSON files. If you run the same \
+code again, this time with ",
+ StyleBox["\[OpenCurlyDoubleQuote]outType\[CloseCurlyDoubleQuote] ", "Input"],
+ ":  ",
+ StyleBox["\[OpenCurlyDoubleQuote]MarkDown\[CloseCurlyDoubleQuote]", "Output"],
+ ", your code will see the JSON file and as the option ",
+ StyleBox["\[OpenCurlyDoubleQuote]OverWrite\[CloseCurlyDoubleQuote]", "Input"],
+ " is set to ",
+ StyleBox["False", "Input"],
+ ", will not rewrite it and create the markdown from it. So, this time it \
+does not go to the Mistral server.\n\nIf the Option ",
+ StyleBox["\[OpenCurlyDoubleQuote]IncludeImageBase64\[CloseCurlyDoubleQuote]",
+   "Input"],
+ " is set to be ",
+ StyleBox["True", "Input"],
+ ", the values of \[OpenCurlyQuote]",
+ StyleBox["image_base64",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] from the JSON file will be placed in appropriate places \
+in the markdown file. If it\[CloseCurlyQuote]s ",
+ StyleBox["False", "Input"],
+ ", then instead of just one MD file, a folder with the PDF base name \
+containing a smaller MD file is created, all the Base64 codes are converted \
+to JPEG files in that folder (with appropriate names) and the arr called from \
+MD file."
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.956140064293827*^9, 3.9561401387190876`*^9}, {
+  3.9561401700379467`*^9, 3.956140326669159*^9}, {3.9561403597890396`*^9, 
+  3.956140403667858*^9}, {3.9561406488795357`*^9, 3.95614081466329*^9}, {
+  3.956142023801359*^9, 3.95614217553434*^9}, {3.9566292978813896`*^9, 
+  3.9566295320517273`*^9}, {3.9566295940922604`*^9, 3.956629742091732*^9}, {
+  3.956629793739237*^9, 3.9566298289914017`*^9}, {3.956631622777748*^9, 
+  3.956631711031904*^9}, {3.956631761323799*^9, 3.956631817177101*^9}, {
+  3.956632546327444*^9, 3.9566325537675934`*^9}, {3.9566325870328903`*^9, 
+  3.9566328371057415`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"7df8cdb7-3d23-904a-94cc-29da6b47298c"],
+
+Cell["This one creates the single MD file, with all Base64 codes:", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.956140064293827*^9, 3.9561401387190876`*^9}, {
+  3.9561401700379467`*^9, 3.956140326669159*^9}, {3.9561403597890396`*^9, 
+  3.956140403667858*^9}, {3.9561406488795357`*^9, 3.95614081466329*^9}, {
+  3.956142023801359*^9, 3.95614217553434*^9}, {3.9566292978813896`*^9, 
+  3.9566295320517273`*^9}, {3.9566295940922604`*^9, 3.956629742091732*^9}, {
+  3.956629793739237*^9, 3.9566298289914017`*^9}, {3.956631622777748*^9, 
+  3.956631711031904*^9}, {3.956631761323799*^9, 3.956631817177101*^9}, {
+  3.956632546327444*^9, 3.9566325537675934`*^9}, {3.9566325870328903`*^9, 
+  3.956632881120476*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"3f288c9a-abea-bf4c-9b9e-3873426ddbd0"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", 
+  RowBox[{"$pdfUrl1", ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<MarkDown\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.956605528451542*^9, {3.956629767096882*^9, 3.9566297793530045`*^9}, {
+   3.9566330093778915`*^9, 
+   3.956633019736582*^9}},ExpressionUUID->"917707a1-f85e-d442-83a6-\
+0120d7c9032d"],
+
+Cell[TextData[{
+ "If you now rerun the code with ",
+ StyleBox["\[OpenCurlyDoubleQuote]IncludeImageBase64\[CloseCurlyDoubleQuote] \
+\[Rule] False", "Input"],
+ ", the code finds the single markdown file and doesn\[CloseCurlyQuote]t run. \
+You get a prompt saying \n",
+ StyleBox["The \[OpenCurlyQuote]MarkDown\[CloseCurlyQuote] file exists and \
+the Option \[OpenCurlyDoubleQuote]OverWrite\[CloseCurlyDoubleQuote] is set to \
+be \[OpenCurlyQuote]False\[CloseCurlyQuote].", "Output"],
+ "\nIf you toggle the \
+\[OpenCurlyDoubleQuote]OverWrite\[CloseCurlyDoubleQuote] option, both the \
+JSON and markdown will be overwritten. If you don\[CloseCurlyQuote]t want \
+that, just delete / rename the single MD file and then run this code..."
+}], "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQfaCut2pP5VvHJ8Lv+kD0g6OnpoDoHX5+c0C0xf1l
+C0D0ihnH14HFjTSPgWiepp3XQLRM8pO7IHrJipB7IHpDj/x7EO1x+/g/EM2R
+zsmyF0gfYQrnBdF3zBwFQfSBzKsqIPqC/U8NEC0RX6oHojVUZXxB9BrLq4kg
+es+Snz9AdIDkR+59QDrCxObZ6iqg/uWNzGuA9JnPTtwguuL9IVkQfWW5uQqI
+nrBzvgaIDnh8g2MtkI5hfSgMoifEaEmB6AurVBVBdE6VVw2IVphgUQuiC3gT
+G0H0h1vKy0C0C9OB3SA65N/iiyAaADxwpeo=
+  "],
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"7f506404-0f32-a64c-a767-47f5778db558"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", 
+  RowBox[{"$pdfUrl1", ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<MarkDown\>\""}], ",", 
+   RowBox[{"\"\<IncludeImageBase64\>\"", "\[Rule]", "False"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.9566330348997383`*^9, 3.956633050782713*^9}},
+ CellLabel->
+  "5/19/25 14:17:16 \
+In[60]:=",ExpressionUUID->"92d2bd87-c782-bd49-a90f-31c7798af1bf"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Local PDF Files", "Subsubsection",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.9547014242155857`*^9, 3.954701514319599*^9}, {
+  3.9547015447311745`*^9, 3.954701557611677*^9}, {3.954726474870884*^9, 
+  3.9547264753838806`*^9}, {3.9548097587979336`*^9, 3.9548097604795*^9}, {
+  3.9562819019964104`*^9, 3.956281903420887*^9}, {3.956283411927313*^9, 
+  3.956283414849165*^9}, {3.9564669044931984`*^9, 3.9564669307052155`*^9}, {
+  3.9564899546513786`*^9, 3.956489958175377*^9}, {3.9566333218472023`*^9, 
+  3.956633325299906*^9}},ExpressionUUID->"f736cffc-0255-7f4c-9822-\
+efb955fea9aa"],
+
+Cell[TextData[{
+ "The code works almost identically for local PDFs, though in the background \
+it has to upload the file to the server and then run the \
+OCR.\[LineSeparator]This repo has a folder called \[OpenCurlyQuote]TestPDFs\
+\[CloseCurlyQuote] in it, containing two example PDFs:\n\t",
+ StyleBox["example_1",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " : The same PDF as in the URL in the example above.\n\t",
+ StyleBox["example_2",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " : Part of a scanned PDF of the famous Bengali book \[OpenCurlyQuote]",
+ StyleBox["Abyakta",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote] by ",
+ StyleBox["Jagadish Chandra Bose",
+  FontSlant->"Italic"],
+ ", obtained from the ",
+ StyleBox[ButtonBox["Internet Archive",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://archive.org/details/dli.scoerat.3652abyakta/mode/2up"], None},
+  ButtonNote->"https://archive.org/details/dli.scoerat.3652abyakta/mode/2up"],
+  FontVariations->{"Underline"->True}],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566054768298435`*^9, 
+  3.956605571323021*^9}, {3.956605611206568*^9, 3.9566056618333874`*^9}, {
+  3.9566056926181374`*^9, 3.956605703052986*^9}, {3.956628867154991*^9, 
+  3.9566288960506287`*^9}, {3.9566291653684025`*^9, 3.9566292225024147`*^9}, {
+  3.956629278010002*^9, 3.956629286347521*^9}, {3.956633344206478*^9, 
+  3.9566334274663353`*^9}, {3.9566336309808693`*^9, 3.956633681407488*^9}, {
+  3.9566337764108295`*^9, 3.9566338547828426`*^9}, {3.9566343646108513`*^9, 
+  3.956634364612852*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"4f116a33-0f81-a94d-aeaa-1f00f1ed4385"],
+
+Cell[BoxData[
+ RowBox[{"$pdfDir", "=", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<TestPDFs\>\""}], 
+    "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.956633456698475*^9, 3.9566334989028416`*^9}},
+ CellLabel->
+  "5/19/25 14:22:23 \
+In[63]:=",ExpressionUUID->"4d5a2a16-74c7-9e42-bdb9-cff4d1ed7461"],
+
+Cell[BoxData[
+ RowBox[{"pdfPaths", "=", 
+  RowBox[{"FileNames", "[", 
+   RowBox[{"\"\<*.pdf\>\"", ",", "$pdfDir"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.956633533358759*^9, 3.9566335850424805`*^9}},
+ CellLabel->
+  "5/19/25 14:23:06 \
+In[65]:=",ExpressionUUID->"1b26a937-cbd6-5449-b446-12c13da6662a"],
+
+Cell[TextData[{
+ "Like before, this one creates a \[OpenCurlyQuote]JSON\[CloseCurlyQuote] \
+folder, but this time in the PDF directory, instead of the ",
+ StyleBox["NotebookDirectory[]", "Input"],
+ " : "
+}], "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566054768298435`*^9, 
+  3.956605571323021*^9}, {3.956605611206568*^9, 3.9566056618333874`*^9}, {
+  3.9566056926181374`*^9, 3.956605703052986*^9}, {3.956628867154991*^9, 
+  3.9566288960506287`*^9}, {3.9566291653684025`*^9, 3.9566292225024147`*^9}, {
+  3.956629278010002*^9, 3.956629286347521*^9}, {3.956633344206478*^9, 
+  3.9566334274663353`*^9}, {3.956634573177984*^9, 3.956634641191641*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"77ec4a60-515a-b048-ae83-ccc11b072965"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", 
+  RowBox[{"pdfPaths", "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9566337527071686`*^9, 3.9566337550794277`*^9}},
+ CellLabel->
+  "5/19/25 14:39:55 \
+In[66]:=",ExpressionUUID->"5017bb88-27ed-6347-9523-7c7e0149e190"],
+
+Cell["Let\[CloseCurlyQuote]s create the MarkDown file too...", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566054768298435`*^9, 
+  3.956605571323021*^9}, {3.956605611206568*^9, 3.9566056618333874`*^9}, {
+  3.9566056926181374`*^9, 3.956605703052986*^9}, {3.956628867154991*^9, 
+  3.9566288960506287`*^9}, {3.9566291653684025`*^9, 3.9566292225024147`*^9}, {
+  3.956629278010002*^9, 3.956629286347521*^9}, {3.956633344206478*^9, 
+  3.9566334274663353`*^9}, {3.956634573177984*^9, 3.956634641191641*^9}, {
+  3.9566346764073143`*^9, 3.9566346884372196`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"5ef28acc-1934-7c44-b837-42dd767275ee"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", 
+  RowBox[{
+   RowBox[{"pdfPaths", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<MarkDown\>\""}], ",", 
+   RowBox[{"\"\<IncludeImageBase64\>\"", "\[Rule]", "False"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.956634704532791*^9, 3.9566347047286663`*^9}, {
+  3.9566347639221115`*^9, 3.95663476418841*^9}},
+ CellLabel->
+  "5/19/25 14:42:53 \
+In[68]:=",ExpressionUUID->"c109dfc2-48e2-b84e-b116-e8ec7f174a25"],
+
+Cell["\<\
+Now, let\[CloseCurlyQuote]s do the same thing with the second example PDF as \
+well. You should see two output cells with paths to both the JSON and MD \
+files...\
+\>", "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQfaCut2pP5VvHJ8Lv+kD0g6OnpoDoHX5+c0C0xf1l
+C0D0ihnH14HFjTSPgWiepp3XQLRM8pO7IHrJipB7IHpDj/x7EO1x+/g/sLn8
+M2LnVb11tHlXVQSiY85LBc0H0g/0dMC0SN8slwVA2iAsKwBEm8xJCwXRMqt3
+RYPoE8cnx4NogU0PE0D0hq8pG1YD6QPzGLeA6C8nV18F0SeEL9wB0R8CDzwG
+0U/kTj8B0RWz2R6sBdIWb/JegWieTUsr1wHpN4pqTSB6B0dvG4je8pe3A0R/
+KfecDqItmPfMAqvbZTcfRP9g2rMYRAMAY6Ot5g==
+  "],
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"c53daccf-d2c3-5d40-9576-0f4c3e899f91"],
+
+Cell[BoxData[
+ RowBox[{"callMistralOCRPDF", "[", 
+  RowBox[{
+   RowBox[{"pdfPaths", "[", 
+    RowBox[{"[", "2", "]"}], "]"}], ",", 
+   RowBox[{"\"\<outType\>\"", "->", "\"\<MarkDown\>\""}], ",", 
+   RowBox[{"\"\<IncludeImageBase64\>\"", "\[Rule]", "False"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{3.956634844868164*^9},
+ CellLabel->
+  "5/19/25 14:44:07 \
+In[69]:=",ExpressionUUID->"8925ef9c-b622-dc4f-a092-31c8c47ce3e8"],
+
+Cell["\<\
+If you now open the MD file, you\[CloseCurlyQuote]re probably disappointed \
+with the OCR quality of this file
+Mistral is not yet that good with Bengali.
+
+We\[CloseCurlyQuote]d need DocAI from Google. That\[CloseCurlyQuote]s outside \
+the scope of this notebook.\
+\>", "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQfaCut2pP5VvHJ8Lv+kD0g6OnpoDoHX5+c0C0xf1l
+C0D0ihnH14HFjTSPgWiepp3XQLRM8pO7IHrJipB7IHpDj/x7EO1x+/g/sLn8
+M2LnVb11tHlXVQSiY85LBc0H0g/0dMC0SN8slwVA2iAsKwBEm8xJCwXRMqt3
+RYPoE8cnx4NogU0PE0D0hq8pG1YD6QPzGLeA6C8nV18F0SeEL9wB0R8CDzwG
+0U/kTj8B0RWz2R6sBdIWb/JegWieTUsr1wHpN4pqTSB6B0dvG4je8pe3A0R/
+KfecDqItmPfMAqvbZTcfRP9g2rMYRK+w27YSROvIpGwB0QCLzbY4
+  "],
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"3baaa796-73ae-494f-be2e-58756fa36674"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Batch Processing", "Section",
+ CellChangeTimes->{{3.9546326499192905`*^9, 3.9546326569575977`*^9}, {
+  3.954632699274126*^9, 3.9546327133258953`*^9}, {3.95469449058873*^9, 
+  3.954694491825279*^9}, {3.956633714493128*^9, 3.9566337158151455`*^9}, {
+  3.956635080956579*^9, 3.9566350947344666`*^9}, {3.9566351530722904`*^9, 
+  3.956635169044056*^9}},ExpressionUUID->"a09ee7dc-b5c3-7841-8b20-\
+cbe7235309e7"],
+
+Cell["Will be updated shortly...", "Text",
+ CellChangeTimes->{{3.9561389644217224`*^9, 3.956139127439928*^9}, {
+  3.9561391743366547`*^9, 3.956139234447109*^9}, {3.9561392692147484`*^9, 
+  3.956139382237385*^9}, {3.9561395692874413`*^9, 3.956139701797125*^9}, {
+  3.9561397591370983`*^9, 3.956139762645586*^9}, {3.956139896985924*^9, 
+  3.9561400222455177`*^9}, {3.95660158075194*^9, 3.9566017478415813`*^9}, {
+  3.9566035368378124`*^9, 3.956603537380722*^9}, {3.9566351773985233`*^9, 
+  3.9566351861769257`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"7f91b074-ce3a-3c4d-9d8f-17eae816d1ba"]
+}, Open  ]]
+},
+Evaluator->"Local2",
+WindowSize->{718.5, 729.75},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+Magnification:>1. Inherited,
+FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (December 26, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"50bf482a-85ed-8841-9418-f4dc28d4cf4f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 300, 5, 66, "Section",ExpressionUUID->"270ebaa9-ca01-8749-bc5c-b9098f22d531"],
+Cell[879, 29, 534, 10, 115, "Text",ExpressionUUID->"1e595848-388f-374d-b884-638c37fd979c"],
+Cell[1416, 41, 318, 7, 61, "Input",ExpressionUUID->"3bcbb28a-7a26-7a42-a0d4-5891a63cb0ed"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1771, 53, 366, 6, 66, "Section",ExpressionUUID->"d7297396-9ecd-9c46-b429-b946319a2fb1"],
+Cell[2140, 61, 604, 13, 93, "Text",ExpressionUUID->"064ba226-c395-c64d-b645-96e8497c6c4d"],
+Cell[2747, 76, 299, 7, 28, "Input",ExpressionUUID->"e2b2c325-ed8e-5a47-a55d-6739c3e66650"],
+Cell[3049, 85, 337, 5, 49, "Text",ExpressionUUID->"28c766dc-b0eb-1c4b-8d56-3aa8500778db"],
+Cell[3389, 92, 312, 8, 42, "Input",ExpressionUUID->"e65bac0e-acfb-a048-b4bf-f108f3dc9425"],
+Cell[CellGroupData[{
+Cell[3726, 104, 696, 15, 53, "Subsection",ExpressionUUID->"49d05754-9357-6d41-94a7-c5ea737ddd10"],
+Cell[4425, 121, 864, 25, 80, "Input",ExpressionUUID->"6fa6214d-645d-e54d-8108-e837699dd718"],
+Cell[CellGroupData[{
+Cell[5314, 150, 1001, 22, 43, "Subsubsection",ExpressionUUID->"1380dd97-4e21-0c4e-b737-0e6b91fbabed"],
+Cell[6318, 174, 1567, 24, 441, "Input",ExpressionUUID->"a781eaeb-d672-0b43-9681-d91741ac4dce"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7922, 203, 609, 9, 35, "Subsubsection",ExpressionUUID->"8b47ed8f-4ba2-d54d-9600-e32864bd5845"],
+Cell[8534, 214, 12911, 261, 1286, "Input",ExpressionUUID->"15e03a32-2bf3-e04d-93e7-b084419de859"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[21482, 480, 658, 10, 35, "Subsubsection",ExpressionUUID->"1b8895eb-70c9-7a46-ade1-8140b9289d26"],
+Cell[22143, 492, 3618, 79, 555, "Input",ExpressionUUID->"31c0741b-b088-b045-bed6-7cc6d5d3ec9d"],
+Cell[25764, 573, 10200, 240, 1221, "Input",ExpressionUUID->"cfd67ed0-24af-6f4d-bd65-bc7affe33e15"],
+Cell[35967, 815, 19689, 385, 1792, "Input",ExpressionUUID->"c1f77f06-2cf9-8949-a1e3-c66d847777f9"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[55705, 1206, 318, 5, 37, "Subsection",ExpressionUUID->"3f7ddf40-e4c2-a044-9576-20d81aab1bea"],
+Cell[56026, 1213, 661, 14, 93, "Text",ExpressionUUID->"617719f1-e963-6c46-9c7d-6cc2bf7a9528"],
+Cell[56690, 1229, 359, 8, 42, "Input",ExpressionUUID->"fb07aba8-e84f-3347-a55d-6fd9ebf5f6c4"],
+Cell[57052, 1239, 607, 13, 71, "Text",ExpressionUUID->"caa74d4b-73e6-9c4b-bcaf-4c97d3482aef"],
+Cell[57662, 1254, 257, 7, 42, "Input",ExpressionUUID->"de89d10c-f6a9-064b-941c-f70305473a1f"],
+Cell[57922, 1263, 985, 16, 42, "Input",ExpressionUUID->"a4cfb45e-c4b6-8a41-ac8c-3e7a6020bd36"],
+Cell[58910, 1281, 507, 11, 42, "Input",ExpressionUUID->"1586aa82-e57e-8049-9b8b-f52e384635a8"],
+Cell[59420, 1294, 532, 11, 71, "Text",ExpressionUUID->"a0a35d88-5fef-2c42-bc4d-9d7008e51e44"],
+Cell[59955, 1307, 471, 9, 80, "Input",ExpressionUUID->"e0d3eae5-fe35-884c-9ebf-b6389140c34a"],
+Cell[60429, 1318, 952, 26, 80, "Input",ExpressionUUID->"7e9c7dd9-edc8-0742-a8dc-4e15e7c11fbe"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61430, 1350, 414, 6, 66, "Section",ExpressionUUID->"94f22785-362e-2049-9a32-7c2758e94891"],
+Cell[61847, 1358, 816, 14, 93, "Text",ExpressionUUID->"db6f04fb-1940-6743-bc64-03e7b7262b58"],
+Cell[CellGroupData[{
+Cell[62688, 1376, 659, 10, 53, "Subsection",ExpressionUUID->"b7574e01-df82-744c-bcdb-c0b4d319bd93"],
+Cell[CellGroupData[{
+Cell[63372, 1390, 612, 9, 43, "Subsubsection",ExpressionUUID->"0ff71490-6923-764e-b892-4f72104d96a9"],
+Cell[63987, 1401, 522, 7, 49, "Text",ExpressionUUID->"2ea376a0-bbec-3d4f-8604-92f247f79b5b"],
+Cell[64512, 1410, 355, 9, 80, "Input",ExpressionUUID->"eecf5431-0948-534e-bdc2-262604ed4e1f"],
+Cell[64870, 1421, 237, 5, 42, "Input",ExpressionUUID->"6e8242f9-5bcc-f642-89ac-03c31f0e614f"],
+Cell[65110, 1428, 633, 15, 130, "Text",ExpressionUUID->"be722b1e-25e8-c84b-9f43-110c6faef07e"],
+Cell[65746, 1445, 389, 7, 71, "Text",ExpressionUUID->"2d142101-5f02-854b-90cb-dcdf2ba68940"],
+Cell[66138, 1454, 242, 5, 42, "Input",ExpressionUUID->"8b4630bc-2ed7-1e4d-832b-3395b9cf8c47"],
+Cell[66383, 1461, 265, 4, 49, "Text",ExpressionUUID->"b30c80e2-0a67-fc44-a196-de360980de26"],
+Cell[66651, 1467, 384, 7, 42, "Input",ExpressionUUID->"998c4f0f-d5e0-ff43-bef8-e22adce2e61f"],
+Cell[67038, 1476, 565, 14, 49, "Text",ExpressionUUID->"6ae95c25-e4ea-ac4b-86f6-75f5aa050eb5"],
+Cell[67606, 1492, 316, 7, 42, "Input",ExpressionUUID->"96ef8a55-013a-7c4b-9086-a6de31f8df09"],
+Cell[67925, 1501, 567, 14, 49, "Text",ExpressionUUID->"7eef7b23-ae50-c649-a9b1-8a0a0a873cc5"],
+Cell[68495, 1517, 423, 9, 42, "Input",ExpressionUUID->"04851ed4-f1d2-0f4f-9575-b9cd072eb2b8"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[68955, 1531, 621, 9, 35, "Subsubsection",ExpressionUUID->"4e1f54bc-7eeb-f44e-a8c0-a1210bb764ee"],
+Cell[69579, 1542, 608, 11, 115, "Text",ExpressionUUID->"bb589118-6901-0342-acbc-9aa2293a62ef"],
+Cell[70190, 1555, 332, 8, 42, "Input",ExpressionUUID->"2187951a-e9a0-8149-ac54-d7ccff654179"],
+Cell[70525, 1565, 1135, 28, 137, "Input",ExpressionUUID->"e1e523d7-ff8b-d14c-be98-1cb3167d636c"],
+Cell[71663, 1595, 321, 8, 42, "Input",ExpressionUUID->"fbd17acd-2d5c-fd4e-b163-f34d06cf567f"],
+Cell[71987, 1605, 293, 4, 49, "Text",ExpressionUUID->"c141e58b-a483-0e4b-a0a1-76cba01946e8"],
+Cell[72283, 1611, 302, 6, 42, "Input",ExpressionUUID->"17a846c5-2b23-e44a-ba70-11af20a37364"],
+Cell[72588, 1619, 867, 13, 28, "Input",ExpressionUUID->"1544f896-3d53-7a4c-8885-00ffa4d4581c"],
+Cell[73458, 1634, 580, 12, 93, "Text",ExpressionUUID->"fe706365-1c30-2b42-bd8b-51bf012f372a"],
+Cell[74041, 1648, 326, 7, 42, "Input",ExpressionUUID->"2d37e683-b715-3047-92df-1b4deffa410a"],
+Cell[74370, 1657, 231, 4, 49, "Text",ExpressionUUID->"aa332466-821f-d144-8383-05db68d7ebed"],
+Cell[74604, 1663, 323, 7, 42, "Input",ExpressionUUID->"d180506f-1ae7-6743-b8a7-302c3860019f"],
+Cell[74930, 1672, 315, 8, 49, "Text",ExpressionUUID->"a5ce10b0-b6f0-3f49-a6a1-252c43410eaa"],
+Cell[75248, 1682, 741, 13, 42, "Input",ExpressionUUID->"94ee51de-8d18-ee49-b0cf-f7da99d27658"],
+Cell[75992, 1697, 376, 8, 42, "Input",ExpressionUUID->"bf2945df-8181-c74e-a65f-eb3cfc44da54"]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76417, 1711, 659, 10, 53, "Subsection",ExpressionUUID->"80e1189e-3b08-aa4e-84e2-37aed39b2edb"],
+Cell[CellGroupData[{
+Cell[77101, 1725, 663, 10, 43, "Subsubsection",ExpressionUUID->"aac132e8-a295-8049-aca0-4f3a3cc6f2a9"],
+Cell[77767, 1737, 1281, 25, 218, "Text",ExpressionUUID->"4a7e9cff-37ef-9e4d-8ef4-66f59c81a1de"],
+Cell[79051, 1764, 285, 7, 42, "Input",ExpressionUUID->"3857d68d-74a7-4845-b23a-a7826bc4a603"],
+Cell[79339, 1773, 1417, 25, 115, "Text",ExpressionUUID->"8d67cc9a-3b0a-e948-895b-af5f45065cab"],
+Cell[80759, 1800, 220, 5, 42, "Input",ExpressionUUID->"8dabab48-26e9-d543-a15f-97b11774b0c1"],
+Cell[80982, 1807, 2028, 36, 224, "Text",ExpressionUUID->"fc01769f-23ea-264f-97eb-521b1e60d310"],
+Cell[83013, 1845, 238, 5, 42, "Input",ExpressionUUID->"89de18d0-d7f7-bf49-99fe-1b2d9c423a7c"],
+Cell[83254, 1852, 994, 16, 49, "Text",ExpressionUUID->"b0523105-7e31-9d48-974c-34e7112c57cf"],
+Cell[84251, 1870, 10145, 172, 382, "Input",ExpressionUUID->"1222b226-179e-dc4a-b6b2-50439bb2d7b3"],
+Cell[94399, 2044, 2413, 45, 290, "Text",ExpressionUUID->"7df8cdb7-3d23-904a-94cc-29da6b47298c"],
+Cell[96815, 2091, 1085, 15, 49, "Text",ExpressionUUID->"3f288c9a-abea-bf4c-9b9e-3873426ddbd0"],
+Cell[97903, 2108, 360, 8, 28, "Input",ExpressionUUID->"917707a1-f85e-d442-83a6-0120d7c9032d"],
+Cell[98266, 2118, 1222, 23, 133, "Text",ExpressionUUID->"7f506404-0f32-a64c-a767-47f5778db558"],
+Cell[99491, 2143, 395, 9, 42, "Input",ExpressionUUID->"92d2bd87-c782-bd49-a90f-31c7798af1bf"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[99923, 2157, 714, 10, 35, "Subsubsection",ExpressionUUID->"f736cffc-0255-7f4c-9822-efb955fea9aa"],
+Cell[100640, 2169, 2056, 42, 159, "Text",ExpressionUUID->"4f116a33-0f81-a94d-aeaa-1f00f1ed4385"],
+Cell[102699, 2213, 374, 10, 42, "Input",ExpressionUUID->"4d5a2a16-74c7-9e42-bdb9-cff4d1ed7461"],
+Cell[103076, 2225, 303, 7, 42, "Input",ExpressionUUID->"1b26a937-cbd6-5449-b446-12c13da6662a"],
+Cell[103382, 2234, 1126, 18, 71, "Text",ExpressionUUID->"77ec4a60-515a-b048-ae83-ccc11b072965"],
+Cell[104511, 2254, 300, 7, 42, "Input",ExpressionUUID->"5017bb88-27ed-6347-9523-7c7e0149e190"],
+Cell[104814, 2263, 1034, 14, 49, "Text",ExpressionUUID->"5ef28acc-1934-7c44-b837-42dd767275ee"],
+Cell[105851, 2279, 499, 12, 42, "Input",ExpressionUUID->"c109dfc2-48e2-b84e-b116-e8ec7f174a25"],
+Cell[106353, 2293, 671, 14, 71, "Text",ExpressionUUID->"c53daccf-d2c3-5d40-9576-0f4c3e899f91"],
+Cell[107027, 2309, 423, 11, 42, "Input",ExpressionUUID->"8925ef9c-b622-dc4f-a092-31c8c47ce3e8"],
+Cell[107453, 2322, 783, 17, 115, "Text",ExpressionUUID->"3baaa796-73ae-494f-be2e-58756fa36674"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[108297, 2346, 411, 6, 66, "Section",ExpressionUUID->"a09ee7dc-b5c3-7841-8b20-cbe7235309e7"],
+Cell[108711, 2354, 609, 9, 49, "Text",ExpressionUUID->"7f91b074-ce3a-3c4d-9d8f-17eae816d1ba"]
+}, Open  ]]
+}
+]
+*)
+
